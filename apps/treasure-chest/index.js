@@ -33,7 +33,7 @@ export default function TreasureChest() {
       <skysphere src="sky2.png" encoding="srgb" />
 
       {/* Descendants Magic Eden link*/}
-      {<billboard position={[-18, 1.7, -8]} axis="y">
+      {<billboard position={[0,2,0]} axis="y">
         <text
           value={'Click here to purchase Descendants'}
           bgColor="black"
