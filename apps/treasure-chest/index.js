@@ -523,7 +523,6 @@ export default function World() {
 
       {/* ground and spawn point */}
       {/*<spawn position={[-3, 3, -28]} rotation={180}/> */}
-      {<spawn position={[-140,72.5,-22]} rotation={-90}/>}
     </app>
   )
 }
