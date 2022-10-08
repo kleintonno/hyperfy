@@ -256,11 +256,15 @@ export default function World() {
           </billboard>}
 
         {/*Safety Net*/}
+        // mark a place you want to be able to teleport to:
+
+    <place label="maze-start" position={[-140,130,-22]} rotationY={-90} />
+
           {<group position={[-120, 45, -20]}>
            <trigger
-              size={[50, 0.1, 15]} debug={false}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-140,130,-22], -90) }}
+              size={[50, 0.1, 15]} debug={true}
+              onEnter={
+                world.teleport(null, 'maze-start')}
             />
 
           </group>}
