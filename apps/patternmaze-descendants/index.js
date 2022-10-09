@@ -47,6 +47,7 @@ export default function World() {
   const bodyRef4 = useRef()
   const bodyRef5 = useRef()
   const engine = useWorld()
+  const world = useWorld()
 
   useEffect(() => {
     const body = bodyRef.current
@@ -256,57 +257,15 @@ export default function World() {
           </billboard>}
 
         {/*Safety Net*/}
-        // mark a place you want to be able to teleport to:
+          <place label="maze-start" position={[-140,120,-22]} rotationY={-90} />
+          <trigger position={[-120, 40, -20]} size={[50, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-start')} debug />
+          <trigger position={[-103, 35, -40]} size={[15,0.1,60]} onEnter={() => world.teleport(null, 'maze-start')} debug />
+          <trigger position={[-85, 25, -58]} size={[45, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-start')} debug />
 
-    <place label="maze-start" position={[-140,130,-22]} rotationY={-90} />
-
-          {<group position={[-120, 45, -20]}>
-           <trigger
-              size={[50, 0.1, 15]} debug={true}
-              onEnter={
-                world.teleport(null, 'maze-start')}
-            />
-
-          </group>}
-          {<group position={[-103, 30, -40]}>
-           <trigger
-              size={[15,0.1,60]} debug={false}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-140,130,-22], -90) }}
-            />
-          </group>}
-
-          {<group position={[-85, 25, -58]}>
-           <trigger
-              size={[45, 0.1, 15]} debug={false}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-140,130,-22], -90) }}
-            />
-          </group>}
-
-          {<group position={[-68, 26, -30]}>
-           <trigger
-              size={[15, 0.1, 50]} debug={false}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-68,80,-57], 180) }}
-            />
-          </group>}
-
-          {<group position={[-40, 21, -14]}>
-           <trigger
-              size={[50, 0.1, 25]} debug={false}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-68,80,-57], 180) }}
-            />
-          </group>}
-
-          {<group position={[-9, 15, -14]}>
-           <trigger
-              size={[25, 0.1, 25]} debug={false}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-68,80,-57], 180) }}
-            />
-          </group>}
+          <place label="maze-checkpoint1" position={[-68,80,-57]} rotationY={180} />
+          <trigger position={[-68, 26, -30]} size={[15, 0.1, 50]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} debug />
+          <trigger position={[-40, 21, -14]} size={[50, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} debug />
+          <trigger position={[-9, 15, -14]} size={[25, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} debug />
 
        {/*Checkpoint1*/}
        <rigidbody>
