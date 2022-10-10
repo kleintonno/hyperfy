@@ -122,60 +122,7 @@ export default function World() {
       {/*Pattern Maze*/}
         <rigidbody> 
         <model src="pattern maze_desc.glb" position={[16,30,-27]} scale={1}/>
-        {/*<model src="pattern maze_funguyz_sliders.glb" position={[16,30,-27]} scale={1}/>*/}
         </rigidbody>
-        {/*Portal to Start*/}
-        {<group position={[5,-0.2,-25]}> 
-          <model src="stand.glb" scale={0.5}/>
-          <trigger
-              size={3}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-140,72.5,-22], -90) 
-              }}
-            />
-          </group>}
-          {<billboard position={[5,2,-25]} axis="y">
-            <text
-              value={'Pattern Maze Start'}
-              bgColor="black"
-              color="white"
-              bgRadius={0.1}
-              padding={0.2}
-            />
-          </billboard>}
-          {<group position={[-32.5,-0.2,-17.5]}> 
-          <model src="stand.glb" scale={0.5}/>
-          <trigger
-              size={3}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-140,72.5,-22], -90) 
-              }}
-            />
-          </group>}
-          {<billboard position={[-32.5,2,-17.5]} axis="y">
-            <text
-              value={'Pattern Maze Start'}
-              bgColor="black"
-              color="white"
-              bgRadius={0.1}
-              padding={0.2}
-            />
-          </billboard>}
-
-        {/*Winner Exit*/}
-          {<billboard position={[10.3,1.75,-8]} axis="y">
-            <text
-              value={'Click to Exit'}
-              bgColor="black"
-              color="white"
-              bgRadius={0.1}
-              padding={0.2}
-              onClick={e => {
-                console.log(e)
-                e.avatar.teleport([-3, 2, -28], 180) }}
-            />
-          </billboard>}
- 
       {/*NFT Credits*/}
       {<billboard position={[-142.2,74,-17]} axis="y">
         <text
@@ -240,13 +187,9 @@ export default function World() {
 
         {/*Surrender*/}
           <rigidbody>
-            <model src="army33.glb" position={[-142.7,72.5,-24]} rotation={[0,45,0]} scale={1} allColliders="trimesh"
-                onClick={e => {
-                  console.log(e)
-                  e.avatar.teleport([-3, 3, -28], -90)}}
-              />
+            <model src="army33.glb" position={[-142.7,72.5,-24]} rotation={[0,45,0]} scale={1} allColliders="trimesh"/>
           </rigidbody>
-          {<billboard position={[-142.2,75,-23.5]} axis="y">
+          {<billboard position={[-142.7,75,-24]} axis="y">
             <text
               value={'Surrender?'}
               bgColor="black"
@@ -254,24 +197,26 @@ export default function World() {
               bgRadius={0.1}
               padding={0.2}
             />
-          </billboard>}
+          </billboard>}  
 
         {/*Safety Net*/}
           <place label="maze-start" position={[-140,120,-22]} rotationY={-90} />
-          <trigger position={[-120, 40, -20]} size={[50, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-start')} debug />
-          <trigger position={[-103, 35, -40]} size={[15,0.1,60]} onEnter={() => world.teleport(null, 'maze-start')} debug />
-          <trigger position={[-85, 25, -58]} size={[45, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-start')} debug />
+          <trigger position={[-120, 50, -20]} size={[50, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-start')} />
+          <trigger position={[-104, 40, -35]} size={[15,0.1,32]} onEnter={() => world.teleport(null, 'maze-start')} />
 
-          <place label="maze-checkpoint1" position={[-68,80,-57]} rotationY={180} />
-          <trigger position={[-68, 26, -30]} size={[15, 0.1, 50]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} debug />
-          <trigger position={[-40, 21, -14]} size={[50, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} debug />
-          <trigger position={[-9, 15, -14]} size={[25, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} debug />
+          <place label="maze-checkpoint1" position={[-105,100,-57]} rotationY={-90} />
+          <trigger position={[-85, 35, -58]} size={[45, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} />
+          <trigger position={[-68, 26, -30]} size={[15, 0.1, 50]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} />
+
+          <place label="maze-checkpoint2" position={[-67,80,-13]} rotationY={-90} />
+          <trigger position={[-40, 21, -14]} size={[50, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint2')} />
+          <trigger position={[-9, 15, -14]} size={[25, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint2')} />
 
        {/*Checkpoint1*/}
        <rigidbody>
-            <model src="army33.glb" position={[-65,52.5,-59.5]} rotation={[0,-45,0]} scale={1} allColliders="trimesh"/>
+            <model src="army33.glb" position={[-104.5,58.5,-59.5]} rotation={[0,-45,0]} scale={1} allColliders="trimesh"/>
           </rigidbody>
-          {<billboard position={[-65,55,-59]} axis="y">
+          {<billboard position={[-104.5,60,-59.5]} axis="y">
             <text
               value={'Checkpoint'}
               bgColor="black"
@@ -280,6 +225,34 @@ export default function World() {
               padding={0.2}
             />
           </billboard>}
+
+       {/*Checkpoint2*/}
+       <rigidbody>
+            <model src="army33.glb" position={[-74,44.5,-19.5]} rotation={[0,90,0]} scale={1} allColliders="trimesh"/>
+          </rigidbody>
+          {<billboard position={[-74,47,-19.5]} axis="y">
+            <text
+              value={'Checkpoint'}
+              bgColor="black"
+              color="white"
+              bgRadius={0.1}
+              padding={0.2}
+            />
+          </billboard>}
+
+        {/*Exit*/}
+        <rigidbody>
+            <model src="army33.glb" position={[21,32.4,-20.3]} rotation={[0,0,0]} scale={1} allColliders="trimesh"/>
+          </rigidbody>
+          {<billboard position={[21,34.9,-20.3]} axis="y">
+            <text
+              value={'Exit?'}
+              bgColor="black"
+              color="white"
+              bgRadius={0.1}
+              padding={0.2}
+            />
+          </billboard>}      
     </app>
   )
 }
