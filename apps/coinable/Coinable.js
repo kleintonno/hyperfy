@@ -78,13 +78,7 @@ export function Coinable({ position, armorPosition, swordPosition }) {
         }}
       >
       </Dialog>
-      {!hasArmor && (
-        <model
-          src=""
-          position={armorPosition}
-          onClick={() => setHasArmor(true)}
-        />
-      )}
+
     </>
   )
   
