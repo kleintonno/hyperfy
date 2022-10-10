@@ -24,62 +24,14 @@ export default function World() {
       <rigidbody> 
         <model src="castle.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/> 
         <model src="accessories.glb" position={[0,8.7,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/>
-        <model src="stand.glb" position={[-3,-0.2,-28]} scale={1} allColliders="trimesh"/> 
         <model src="landscape.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
-        <model src="mountain_pass1.glb" position={[0,8.9,0]} scale={7} allColliders="trimesh"/>
         <model src="house1.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
         <model src="road.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
         </rigidbody>
 
-      {/*Respawn Portals*/}
-        
-          {/*Throne*/}
-          {<group position={[4.7,1.3,7.5]}> 
-          <model src="stand.glb" scale={0.5}/>
-          <trigger
-              size={3}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-3, 3, -28], 175) 
-              }}
-            />
-          </group>}
-         
-          {/*FrontRight*/}
-          {<group position={[-20.6,23.2,14.4]}> 
-          <model src="stand.glb" scale={0.5}/>
-          <trigger
-              size={2}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-3, 3, -28], 175) //frontright
-              }}
-            />
-          </group>}
-          
-          {/*FrontLeft*/}
-          {<group position={[14.2,23.2,14.4]}> 
-          <model src="stand.glb" scale={0.5}/>
-          <trigger
-              size={2}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-3, 3, -28], 175)
-              }}
-            />
-          </group>}
-         
-          {/*Mountain Pass*/}
-          {<group position={[177.4,49.8,33]}> 
-          <model src="stand.glb" scale={0.5}/>
-          <trigger
-              size={2}
-              onEnter={avatarId => {
-                engine.getAvatar(avatarId).teleport([-3, 3, -28], 175)
-              }}
-            />
-          </group>}
       
       {/*Castle Passable*/}
         <model src="castle_passable.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} />
-        <model src="mountain_pass_passable.glb" position={[0,9,0]} scale={7} />
         <model src="mountain_pass_armies.glb" position={[0,9,0]} scale={7} />
 
         <model src="levelup.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} 
