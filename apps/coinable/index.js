@@ -17,7 +17,7 @@ import { Coinable } from './Coinable'
 export default function Environment() {
   return (
     <app>
-      <Coinable position={[0, 0, 0]} armorPosition={[0, 0, 3]} swordPosition={[10,0,10]}/>
+      <Coinable position={[0, 0, 0]}/>
 
       {/* spawn point & ground */}
     </app>

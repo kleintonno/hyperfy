@@ -21,7 +21,7 @@ const schema = {
       goto: 'questAsk',
     },
     questAsk: {
-      text: 'Check out the demo at the Coinable house. You can hop over with the portal.',
+      text: 'Then check out the Coinable demo on the 2nd floor!',
       origin: 'questAsk',
       options: [
         { text: "Sounds good!", goto: 'questAccept' },
@@ -32,26 +32,9 @@ const schema = {
       text: '*Grumble*\n\nKids these days...',
     },
     questAccept: {
-      text: 'Check back with me when you have it.',
+      text: 'Feel free to jump in discord and ask futher questions! Minting soon...',
       origin: 'questActive',
-    },
-    questActive: {
-      text: 'Welcome back. Any luck finding my armor bear?',
-      options: [
-        { text: 'Yep, here you go!', require: 'armor', goto: 'questComplete' },
-        { text: 'Sorry, not yet', goto: 'questNotYet' },
-      ],
-    },
-    questNotYet: {
-      text: 'I really hope you can find him for me!',
-    },
-    questComplete: {
-      text: 'Oh for realsies!?!? You found him! Thank you so much sir!',
-      origin: 'loved',
-      event: 'complete',
-    },
-    loved: {
-      text: "I don't know what I would have done if you didn't find my armor for me.",
+      event: 'complete'
     },
   },
 }
@@ -97,7 +80,7 @@ export function Coinable({ position, armorPosition, swordPosition }) {
       </Dialog>
       {!hasArmor && (
         <model
-          src="armor.glb"
+          src=""
           position={armorPosition}
           onClick={() => setHasArmor(true)}
         />
