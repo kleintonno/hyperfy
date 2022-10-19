@@ -22,16 +22,16 @@ export default function World() {
 
       {/*Castle Collisions*/}
       <rigidbody> 
-        <model src="castle.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/> 
-        <model src="accessories.glb" position={[0,8.7,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/>
-        <model src="landscape.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
+        <model src="castle.glb" position={[0,0,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/> 
+        <model src="accessories.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/>
+        <model src="landscape.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
         <model src="house1.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
         <model src="road.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
         </rigidbody>
 
       
       {/*Castle Passable*/}
-        <model src="castle_passable.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} />
+        <model src="castle_passable.glb" position={[0,0,0]} rotation={[0,0,0]} scale={7} />
         <model src="mountain_pass_armies.glb" position={[0,9,0]} scale={7} />
 
         <model src="levelup.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} 
