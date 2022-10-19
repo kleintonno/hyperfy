@@ -107,9 +107,10 @@ export default function World() {
       <model src="launcher2.glb" scale={0.4} allColliders="trimesh"/> 
       </rigidbody>  
 
+
       {/*Launcher GLB*/}
       <rigidbody ref={bodyRef5} type="kinematic">
-      <model src="launcher.glb" position={[-97.33, 59.15, 0]} scale={0.3} allColliders="trimesh"/>       
+      <model src="launcher.glb" position={[-97.33, 59, 0]} scale={0.3} allColliders="trimesh"/>       
       <model src="launcher.glb" position={[-88.33, 57.15, 0]} scale={0.3} allColliders="trimesh"/>       
       <model src="launcher.glb" position={[-79.33, 55.15, 0]} scale={0.3} allColliders="trimesh"/>       
       </rigidbody> 

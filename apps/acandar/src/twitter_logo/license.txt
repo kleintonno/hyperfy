@@ -1,0 +1,11 @@
+Model Information:
+* title:	Twitter Logo
+* source:	https://sketchfab.com/3d-models/twitter-logo-60aedf8d974d481995e196225fb0bd2e
+* author:	III_OrilaS_III (https://sketchfab.com/III_OrilaS_III)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Twitter Logo" (https://sketchfab.com/3d-models/twitter-logo-60aedf8d974d481995e196225fb0bd2e) by III_OrilaS_III (https://sketchfab.com/III_OrilaS_III) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -34,8 +34,8 @@ Option = {
 const noop = () => {}
 const defaults = {
   offset: [-0.9, 1.6, -0.1],
-  near: 3,
-  far: 5,
+  near: 4,
+  far: 6,
   onEvent: noop,
   onRequire: noop,
   onView: noop,
@@ -158,7 +158,7 @@ function Popup({ schema, position, onView, onEvent, onRequire, onEnd }) {
         <text
           value={view.text}
           color="white"
-          fontSize={0.06}
+          fontSize={0.08}
           maxWidth={0.8}
           anchorX="center"
           anchorY="middle"

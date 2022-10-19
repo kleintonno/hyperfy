@@ -33,29 +33,17 @@ const schema = {
     },
     questAccept: {
       text: 'Feel free to jump in discord and ask futher questions! Minting soon...',
-      origin: 'questActive',
+      origin: 'loved',
       event: 'complete'
+    },
+    loved: {
+      text: "I hope you enjoyed the Coinable demo.",
     },
   },
 }
 
-export function Coinable({ position, armorPosition, swordPosition }) {
+export function Coinable({ position }) {
   const [view, setView] = useState(false)
-  const [hasArmor, setHasArmor] = useState(false)
-  const [givenArmor, setGivenArmor] = useState(false)
-
-  // Erika is sad until she gets her armor.
-  let animation = givenArmor ? 'Happy' : 'Sad'
-  // If you're talking to her:-
-  if (view) {
-    if (view === 'questComplete') {
-      // She's excited when you give her the armor!
-      //animation = 'Excited'
-    } else {
-      // Otherwise she just talks to you
-      //animation = 'Talk'
-    }
-  }
 
   return (
     <>
@@ -64,18 +52,9 @@ export function Coinable({ position, armorPosition, swordPosition }) {
       <Dialog
         position={position}
         schema={schema}
-        onRequire={name => {
-          if (name === 'armor') return hasArmor
-        }}
+
         onView={setView}
-        onEvent={(event, setView) => {
-          if (event === 'complete') {
-            setGivenArmor(true)
-          }
-          // If you wanted to you could run async stuff like checking a wallet
-          // here in response to an event, and then call setView(String) to continue
-          // the conversation.
-        }}
+
       >
       </Dialog>
 
