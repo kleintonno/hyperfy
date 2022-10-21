@@ -17,7 +17,7 @@ import { Erika } from './Erika'
 export default function Environment() {
   return (
     <app>
-      <Erika position={[0, 0, 0]} armorPosition={[0, 0, 3]} swordPosition={[10,0,10]}/>
+      <Erika position={[0, 0, 0]} armorPosition={[-82, 25, 83]} swordPosition={[140,11,-588]}/>
 
       {/* spawn point & ground */}
       <spawn />

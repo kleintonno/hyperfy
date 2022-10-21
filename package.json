@@ -12,7 +12,7 @@
     "delete": "hyperfy-tools delete"
   },
   "devDependencies": {
-    "hyperfy-tools": "2.4.0"
+    "hyperfy-tools": "2.6.0"
   },
   "dependencies": {},
   "engines": {

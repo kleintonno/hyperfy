@@ -21,7 +21,7 @@ const schema = {
       goto: 'questAsk',
     },
     questAsk: {
-      text: 'First you will need some armor. There are spare breastplates at the fortress guarding the mountain pass.',
+      text: 'First you will need a sword. Grab one off the rack.',
       origin: 'questAsk',
       options: [
         { text: "I'll get right on it!", goto: 'questAccept' },
@@ -30,23 +30,47 @@ const schema = {
     },
     questReject: {
       text: '*Grumble*\n\nKids these days...',
+      origin: 'intro',
     },
     questAccept: {
       text: 'Check back with me when you have it.',
       origin: 'questActive',
     },
     questActive: {
-      text: 'Welcome back. Any luck finding my armor bear?',
+      text: 'Got your sword?',
       options: [
-        { text: 'Yep, here you go!', require: 'armor', goto: 'questComplete' },
+        { text: 'Yep, got it!', require: 'sword', goto: 'questAsk2',
+      },
         { text: 'Sorry, not yet', goto: 'questNotYet' },
       ],
     },
     questNotYet: {
-      text: 'I really hope you can find him for me!',
+      text: "We don't have all day buttercup!",
+    },
+    questAsk2: {
+      text: 'Now you need some armor. There are spare breastplates at the fortress guarding the mountain pass.',
+      origin: 'questAsk2',
+      options: [
+        { text: "I'm on it, Captain!", goto: 'questAccept2' },
+        { text: 'Some other time...', goto: 'questReject2' },
+      ],
+    },
+    questReject2: {
+      text: '*Grumble*\n\nPaperhand...',
+    },
+    questAccept2: {
+      text: 'You know where to find me.',
+      origin: 'questActive2',
+    },
+    questActive2: {
+      text: 'Got your armor yet?',
+      options: [
+        { text: 'Yes, Sir!', require: 'armor', goto: 'questComplete' },
+        { text: 'Sorry, not yet', goto: 'questNotYet' },
+      ],
     },
     questComplete: {
-      text: 'Oh for realsies!?!? You found him! Thank you so much sir!',
+      text: 'Ready for battle? Maybe a shield first?',
       origin: 'loved',
       event: 'complete',
     },
@@ -85,30 +109,6 @@ export function Erika({ position, armorPosition, swordPosition }) {
         position={position}
         schema={schema}
         onRequire={name => {
-          if (name === 'armor') return hasArmor
-        }}
-        onView={setView}
-        onEvent={(event, setView) => {
-          if (event === 'complete') {
-            setGivenArmor(true)
-          }
-          // If you wanted to you could run async stuff like checking a wallet
-          // here in response to an event, and then call setView(String) to continue
-          // the conversation.
-        }}
-      >
-      </Dialog>
-      {!hasArmor && (
-        <model
-          src="armor.glb"
-          position={armorPosition}
-          onClick={() => setHasArmor(true)}
-        />
-      )}
-      <Dialog
-        position={position}
-        schema={schema}
-        onRequire={name => {
           if (name === 'sword') return hasSword
         }}
         onView={setView2}
@@ -127,9 +127,16 @@ export function Erika({ position, armorPosition, swordPosition }) {
           src="sword.glb"
           position={swordPosition}
           onClick={() => setHasSword(true)}
+          scale={1}
         />
       )}
-
+      {!hasArmor && (
+        <model
+          src="armor.glb"
+          position={armorPosition}
+          onClick={() => setHasArmor(true)}
+        />
+        )}
     </>
   )
   

@@ -4,6 +4,13 @@ import { DEG2RAD, useWorld, useFields, useSyncState } from 'hyperfy'
 
 export default function World() {
   const engine = useWorld()
+  const [visible1, setVisible1] = useState(false)
+  const [visible2, setVisible2] = useState(false)
+  const [visible3, setVisible3] = useState(false)
+  const [visible4, setVisible4] = useState(false)
+  const [visible5, setVisible5] = useState(true)
+  const [visible6, setVisible6] = useState(true)
+
   return (
     <app>
      {/* <skysphere src="sky2.png" encoding="srgb" /> */}
@@ -20,6 +27,8 @@ export default function World() {
         />
       </billboard>}
 
+
+
       {/*Castle Collisions*/}
       <rigidbody> 
         <model src="castle.glb" position={[0,0,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/> 
@@ -27,13 +36,40 @@ export default function World() {
         <model src="landscape.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
         <model src="house1.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
         <model src="road.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
+        <model src="bookshelf.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
+        <model src="table.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
+        <model src="otherchairs.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
+
+        <model src="questgiver_L3.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible1(true),setVisible2(false),setVisible3(false),setVisible4(false),setVisible5(true),setVisible6(false))}/>
+
+        {visible1 && (
+        <model src="bluechair.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible2(true))}/>
+        )}
+
+        {visible2 && (
+        <model src="lamp.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible3(true))}/>
+        )}
+
+        {visible3 && (
+        <model src="greenbook.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible4(true),setVisible5(false))}/>
+        )}
+
+        {visible4 && (
+        <model src="door_open.glb" position={[0, 0, 0]} scale={7}/>
+        )}
+
+        {visible5 && (
+        <model src="door_closed.glb" position={[0, 0, 0]} scale={7}/>
+        )}
+      
+        {visible6 && (
+        <model src="bluechair.glb" position={[0, 0, 0]} scale={7}/>
+        )}
         </rigidbody>
 
       
       {/*Castle Passable*/}
         <model src="castle_passable.glb" position={[0,0,0]} rotation={[0,0,0]} scale={7} />
-        <model src="mountain_pass_armies.glb" position={[0,9,0]} scale={7} />
-
         <model src="levelup.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} 
           onClick={e => {engine.open('https://levelup.ancestors.digital/', true)}}
           />
