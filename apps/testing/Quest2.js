@@ -14,14 +14,39 @@ import { Dialog } from './Dialog'
  */
 const schema = {
   id: 'Quest2',
-  origin: 'three',
+  origin: 'intro',
   views: {
-    three: {
-    text: 'Are you free to help with some more stuff? \nWe can use all the help we can get.',
+    intro: {
+      text: "So you want to become a knight?",
+      goto: 'quest1Ask',
+  },
+  quest1Ask: {
+    text: 'First you will need a sword. Grab one off the rack.',
+    origin: 'quest1Ask',
     options: [
-      { text: 'Yes', event: 'mine'},
-      { text: 'No' },
+      { text: "I'll get right on it!", goto: 'introAccept', event: 'mine'},
+      { text: "Maybe later", goto: 'introReject' },
     ],
+  },
+  
+  introReject: {
+    text: "*Grumble*\n\nKids these days...",
+    origin: 'intro',
+  },
+  introAccept: {
+    text: "Check back with me when you have it.",
+    origin: 'quest1Active',
+  },
+  quest1Active: {
+    text: 'Got your sword?',
+    options: [
+      { text: 'Yep, got it!', require: 'sword', goto: 'questAsk2',
+    },
+      { text: 'Sorry, not yet', goto: 'quest1NotYet' },
+    ],
+  },
+  quest1NotYet: {
+    text: "We don't have all day buttercup!",
   },
 
   }
@@ -30,10 +55,12 @@ const schema = {
 export function Quest2() {
   const [view, setView] = useState(false)
   const [mineActive, setMineActive] = useState(false)
+  const [mineActive2, setMineActive2] = useState(false)
   const [visible, setVisible] = useState(false)
 
   function doClick() {
-   setVisible(true)
+    setMineActive(true)
+
   }
 
   return (
@@ -43,14 +70,22 @@ export function Quest2() {
         onView={setView}
         onEvent={event => {
           if (event === 'mine') {
-            setMineActive(true)
+            setVisible(true)
           }
         }}
       ></Dialog>
-      <model src="army79.glb" onClick={mineActive ? doClick : null} />
+
+      <model src="army79.glb"  />
       {visible && (
-      <model src="bookshelf.glb" position={[10, 0, -5]} />)}
-      <model src="swordrack.glb" position={[10,0,10]} rotation={[0,0,0]} />
+        <>
+      <model src="bookshelf.glb" position={[10, 0, -5]} />
+      <model src="swordrack.glb" position={[10,0,10]} rotation={[0,0,0]} onClick={mineActive ? doClick : null}/>
+      <model src="sword.glb" position={[10,0,10]} rotation={[0,0,0]} />
+      <model src="armor.glb" position={[10,0,5]} rotation={[0,0,0]} scale={0.1}/>
+
+
+</>
+      )}
 
     </>
   )
