@@ -15,7 +15,7 @@ export default function World() {
     <app>
      {/* <skysphere src="sky2.png" encoding="srgb" /> */}
   
-      {/* Descendants Magic Eden link*/}
+      {/* Descendants Magic Eden link
       {<billboard position={[-18, 1.7, -8]} axis="y">
         <text
           value={'Click here to purchase Descendants'}
@@ -25,7 +25,7 @@ export default function World() {
           padding={0.2}
           onClick={e => {engine.open('https://www.magiceden.io/marketplace/descendants', true)}} // open link in a new tab
         />
-      </billboard>}
+      </billboard>}*/}
 
 
 
@@ -51,7 +51,10 @@ export default function World() {
         )}
 
         {visible3 && (
+          <>
         <model src="greenbook.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible4(true),setVisible5(false))}/>
+        <model src="lamp_lit.glb" position={[0, 0, 0]} scale={7} />
+        </>
         )}
 
         {visible4 && (
