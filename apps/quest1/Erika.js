@@ -48,6 +48,7 @@ const schema = {
       text: "We don't have all day buttercup!",
     },
     questAsk2: {
+      event: 'complete1',
       text: 'Now you need some armor. There are spare breastplates at the fortress guarding the mountain pass.',
       origin: 'questAsk2',
       options: [
@@ -72,7 +73,7 @@ const schema = {
     questComplete: {
       text: 'Ready for battle? Maybe a shield first?',
       origin: 'loved',
-      event: 'complete',
+      event: 'complete2',
     },
     loved: {
       text: "I don't know what I would have done if you didn't find my armor for me.",
@@ -84,7 +85,6 @@ export function Erika({ position, armorPosition, swordPosition }) {
   const [view, setView] = useState(false)
   const [hasArmor, setHasArmor] = useState(false)
   const [givenArmor, setGivenArmor] = useState(false)
-  const [view2, setView2] = useState(false)
   const [hasSword, setHasSword] = useState(false)
   const [givenSword, setGivenSword] = useState(false)
 
@@ -111,10 +111,27 @@ export function Erika({ position, armorPosition, swordPosition }) {
         onRequire={name => {
           if (name === 'sword') return hasSword
         }}
-        onView={setView2}
-        onEvent={(event, setView2) => {
-          if (event === 'complete') {
+
+        onView={setView}
+        onEvent={(event, setView) => {
+          if (event === 'complete1') {
+            <>
             setGivenSword(true)
+          
+            onRequire={name => {
+              if (name === 'armor') return hasArmor
+            }}
+            
+
+            onView={setView}
+            onEvent={(event, setView) => {
+             if (event === 'complete2') {
+                      setGivenArmor(true)
+             }}}
+
+
+
+            </>
           }
           // If you wanted to you could run async stuff like checking a wallet
           // here in response to an event, and then call setView(String) to continue
@@ -122,6 +139,7 @@ export function Erika({ position, armorPosition, swordPosition }) {
         }}
       >
       </Dialog>
+      
       {!hasSword && (
         <model
           src="sword.glb"
