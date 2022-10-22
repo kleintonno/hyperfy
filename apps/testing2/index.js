@@ -12,12 +12,12 @@ export default function World() {
 
   const schema = {
     id: 'Quest2',
-    origin: 'intro',
+    origin: 'three',
     views: {
     three: {
      text: 'Are you free to help with some more stuff? \nWe can use all the help we can get.',
      options: [
-       { text: 'Yes', event: 'mine', goto: 'four', origin: 'four' },
+       { text: 'Yes', event: 'mine'},
        { text: 'No' },
     ],
   },
