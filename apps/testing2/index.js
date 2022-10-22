@@ -39,10 +39,11 @@ return (
             setMineActive(true)
           }
         }}
-       > </Dialog>
+       > <model src="questgiver.glb"
+       onClick={mineActive ? doClick() : null} />
+       </Dialog>
 
-<model src="questgiver.glb"
-  onClick={mineActive ? doClick() : null} />
+
 
   </app>
 </>

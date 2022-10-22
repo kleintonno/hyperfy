@@ -33,7 +33,9 @@ export function Quest2({position}) {
 
   return (
     <>
-      <Dialog
+      <Dialog>
+        <model src="questgiver.glb"/>
+        onClick={mineActive ? doClick() : null} />
         position={position}
         schema={dialog}
         onView={setView}
@@ -42,10 +44,10 @@ export function Quest2({position}) {
             setMineActive(true)
           }
         }}
-       > </Dialog>
+        
+      </Dialog>
 
-<model src="questgiver.glb"
-  onClick={mineActive ? doClick() : null} />
+
       </>
   )
   
