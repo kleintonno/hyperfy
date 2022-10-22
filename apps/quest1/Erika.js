@@ -48,7 +48,7 @@ const schema = {
       text: "We don't have all day buttercup!",
     },
     questAsk2: {
-      event: 'complete1',
+      event: 'quest1Complete',
       text: 'Now you need some armor. There are spare breastplates at the fortress guarding the mountain pass.',
       origin: 'questAsk2',
       options: [
@@ -114,7 +114,7 @@ export function Erika({ position, armorPosition, swordPosition }) {
 
         onView={setView}
         onEvent={(event, setView) => {
-          if (event === 'complete1') {
+          if (event === 'quest1Complete') {
             <>
             setGivenSword(true)
           
