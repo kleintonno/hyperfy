@@ -32,7 +32,7 @@ return (
     </rigidbody>
  
     <Dialog
-        schema={dialog}
+        schema={schema}
         onView={setView}
         onEvent={event => {
           if (event === 'mine') {
