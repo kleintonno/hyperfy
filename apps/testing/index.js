@@ -26,7 +26,7 @@ return (
         <model src="doorway.glb" position={[-5, 0, -5]}/>)}
     </rigidbody>
  
-    <Quest2 position={[0, 0, 0]} />
+    <Quest2  />
 
 
     </app>

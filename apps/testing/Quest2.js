@@ -27,17 +27,15 @@ const schema = {
   }
 }
 
-export function Quest2({position}) {
+export function Quest2() {
   const [view, setView] = useState(false)
   const [mineActive, setMineActive] = useState(false)
 
   return (
     <>
-      <Dialog>
-        <model src="questgiver.glb"/>
-        onClick={mineActive ? doClick() : null} />
-        position={position}
-        schema={dialog}
+      <Dialog
+
+        schema={schema}
         onView={setView}
         onEvent={event => {
           if (event === 'mine') {
@@ -45,8 +43,10 @@ export function Quest2({position}) {
           }
         }}
         
-      </Dialog>
-
+        ></Dialog>
+        
+      <model src="questgiver.glb"/>
+        onClick={mineActive ? doClick() : null} />
 
       </>
   )
