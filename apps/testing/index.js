@@ -15,7 +15,6 @@ return (
   <>
    <app>
     <rigidbody>
-        <model src="swordrack.glb" position={[10,0,10]} rotation={[0,0,0]} />
         <model src="bookshelf.glb" position={[-5, 0, -5]} />
         <model src="army33.glb" position={[0, 0, -5]} onClick={() => (setVisible(true),setVisible2(true),setVisible3(false))}/>
       {visible && (

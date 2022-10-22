@@ -30,11 +30,15 @@ const schema = {
 export function Quest2() {
   const [view, setView] = useState(false)
   const [mineActive, setMineActive] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  function doClick() {
+   setVisible(true)
+  }
 
   return (
     <>
       <Dialog
-
         schema={schema}
         onView={setView}
         onEvent={event => {
@@ -42,13 +46,13 @@ export function Quest2() {
             setMineActive(true)
           }
         }}
-        
-        ></Dialog>
-        
-      <model src="questgiver.glb"/>
-        onClick={mineActive ? doClick() : null} />
+      ></Dialog>
+      <model src="army79.glb" onClick={mineActive ? doClick : null} />
+      {visible && (
+      <model src="bookshelf.glb" position={[10, 0, -5]} />)}
+      <model src="swordrack.glb" position={[10,0,10]} rotation={[0,0,0]} />
 
-      </>
+    </>
   )
   
 }
