@@ -93,7 +93,7 @@ const schema = {
       text: 'Found a solid shield?',
       options: [
         { text: 'Found one!', require: 'shield', goto: 'questComplete' },
-        { text: "Sorry, I'm a little slow...", goto: 'quest3NotYet' },
+        { text: 'Where am I?', goto: 'quest3NotYet' },
       ],
     },
     quest3NotYet: {
@@ -161,12 +161,8 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
       ></Dialog>
 
       <model src="army79.glb" scale={7} />
-      <model
-        src="swordrack.glb"
-        position={[0, 0, 0]}
-        rotation={[0, 0, 0]}
-        scale={7}
-      />
+      <model src="armor_accessories.glb" scale={7} />
+      <model src="swordrack.glb" scale={7} />
 
       {visible && (
         <>

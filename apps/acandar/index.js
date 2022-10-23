@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { DEG2RAD, useWorld, useFields, useSyncState } from 'hyperfy'
 
-
 export default function World() {
   const engine = useWorld()
   const [visible1, setVisible1] = useState(false)
@@ -13,8 +12,8 @@ export default function World() {
 
   return (
     <app>
-     {/* <skysphere src="sky2.png" encoding="srgb" /> */}
-  
+      {/* <skysphere src="sky2.png" encoding="srgb" /> */}
+
       {/* Descendants Magic Eden link
       {<billboard position={[-18, 1.7, -8]} axis="y">
         <text
@@ -27,62 +26,158 @@ export default function World() {
         />
       </billboard>}*/}
 
-
-
       {/*Castle Collisions*/}
-      <rigidbody> 
-        <model src="castle.glb" position={[0,0,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/> 
-        <model src="accessories.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} allColliders="trimesh"/>
-        <model src="landscape.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
-        <model src="house1.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
-        <model src="road.glb" position={[0,9,0]} scale={7} allColliders="trimesh"/>
-        <model src="bookshelf.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
-        <model src="table.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
-        <model src="otherchairs.glb" position={[0,0,0]} scale={7} allColliders="trimesh"/>
+      <rigidbody>
+        <model
+          src="castle.glb"
+          position={[0, 0, 0]}
+          rotation={[0, 0, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
+        <model
+          src="accessories.glb"
+          position={[0, 9, 0]}
+          rotation={[0, 0, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
+        <model
+          src="landscape.glb"
+          position={[0, 0, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
+        <model
+          src="house1.glb"
+          position={[0, 9, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
+        <model
+          src="road.glb"
+          position={[0, 9, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
+        <model
+          src="bookshelf.glb"
+          position={[0, 0, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
+        <model
+          src="table.glb"
+          position={[0, 0, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
+        <model
+          src="otherchairs.glb"
+          position={[0, 0, 0]}
+          scale={7}
+          allColliders="trimesh"
+        />
 
-        <model src="questgiver_L3.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible1(true),setVisible2(false),setVisible3(false),setVisible4(false),setVisible5(true),setVisible6(false))}/>
+        <model
+          src="questgiver_L3.glb"
+          position={[0, 0, 0]}
+          scale={7}
+          onClick={() => (
+            setVisible1(true),
+            setVisible2(false),
+            setVisible3(false),
+            setVisible4(false),
+            setVisible5(true),
+            setVisible6(false)
+          )}
+        />
 
         {visible1 && (
-        <model src="bluechair.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible2(true))}/>
+          <model
+            src="bluechair.glb"
+            position={[0, 0, 0]}
+            scale={7}
+            onClick={() => setVisible2(true)}
+          />
         )}
 
         {visible2 && (
-        <model src="lamp.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible3(true))}/>
+          <model
+            src="lamp.glb"
+            position={[0, 0, 0]}
+            scale={7}
+            onClick={() => setVisible3(true)}
+          />
         )}
 
         {visible3 && (
           <>
-        <model src="greenbook.glb" position={[0, 0, 0]} scale={7} onClick={() => (setVisible4(true),setVisible5(false))}/>
-        <model src="lamp_lit.glb" position={[0, 0, 0]} scale={7} />
-        </>
+            <model
+              src="greenbook.glb"
+              position={[0, 0, 0]}
+              scale={7}
+              onClick={() => (setVisible4(true), setVisible5(false))}
+            />
+            <model src="lamp_lit.glb" position={[0, 0, 0]} scale={7} />
+          </>
         )}
 
         {visible4 && (
-        <model src="door_open.glb" position={[0, 0, 0]} scale={7}/>
+          <model src="door_open.glb" position={[0, 0, 0]} scale={7} />
         )}
 
         {visible5 && (
-        <model src="door_closed.glb" position={[0, 0, 0]} scale={7}/>
+          <model src="door_closed.glb" position={[0, 0, 0]} scale={7} />
         )}
-      
-        {visible6 && (
-        <model src="bluechair.glb" position={[0, 0, 0]} scale={7}/>
-        )}
-        </rigidbody>
 
-      
+        {visible6 && (
+          <model src="bluechair.glb" position={[0, 0, 0]} scale={7} />
+        )}
+      </rigidbody>
+
       {/*Castle Passable*/}
-        <model src="castle_passable.glb" position={[0,0,0]} rotation={[0,0,0]} scale={7} />
-        <model src="levelup.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} 
-          onClick={e => {engine.open('https://levelup.ancestors.digital/', true)}}
-          />
-        <model src="staking.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} 
-          onClick={e => {engine.open('https://staking.ancestors.digital/descendants', true)}}
-          />
-        <model src="dreamtools_chart.glb" position={[0,9,0]} rotation={[0,0,0]} scale={7} 
-          onClick={e => {engine.open('https://dreamtools.app/collections/descendants', true)}}
-          />
-         
+      <model
+        src="castle_passable.glb"
+        position={[0, 0, 0]}
+        rotation={[0, 0, 0]}
+        scale={7}
+      />
+      <model
+        src="levelup.glb"
+        position={[0, 9, 0]}
+        rotation={[0, 0, 0]}
+        scale={7}
+        onClick={e => {
+          engine.open('https://levelup.ancestors.digital/', true)
+        }}
+      />
+      <model
+        src="staking.glb"
+        position={[0, 9, 0]}
+        rotation={[0, 0, 0]}
+        scale={7}
+        onClick={e => {
+          engine.open('https://staking.ancestors.digital/descendants', true)
+        }}
+      />
+      <model
+        src="dreamtools_chart.glb"
+        position={[0, 9, 0]}
+        rotation={[0, 0, 0]}
+        scale={7}
+        onClick={e => {
+          engine.open('https://dreamtools.app/collections/descendants', true)
+        }}
+      />
+
+      <place
+        label="Castle Level1"
+        position={[-15, 2.75, 12]}
+        rotationY={-160}
+      />
+      <place label="Outer Wall" position={[85, 18, -569]} rotationY={-55} />
+
       {/* a trigger box that teleports when you walk on it */}
       {/*<group position={[-2, 0.05, -3]}>
         <box size={[2, 0.1, 2]} />
