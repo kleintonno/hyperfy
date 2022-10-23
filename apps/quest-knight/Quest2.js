@@ -74,24 +74,50 @@ const schema = {
       text: 'Get a move on!',
     },
     quest3Ask: {
-      text: 'tbd.',
+      text: 'Last but not least, you need a shield. There might be a spare in the throne room.',
       origin: 'quest3Ask',
       options: [
-        { text: "I'll get right on it!", goto: 'quest1Accept', event: 'mine' },
-        { text: 'Maybe later', goto: 'quest1Reject' },
+        { text: 'Sir, yes Sir!', goto: 'quest3Accept', event: 'mine3' },
+        { text: 'Oh look at the time...', goto: 'quest3Reject' },
       ],
+    },
+    quest3Reject: {
+      text: "*Grumble*\n\nGet outta here mama's boy",
+      origin: 'quest3Ask',
+    },
+    quest3Accept: {
+      text: "I'll be here. Waiting.",
+      origin: 'quest3Active',
+    },
+    quest3Active: {
+      text: 'Found a solid shield?',
+      options: [
+        { text: 'Found one!', require: 'shield', goto: 'questComplete' },
+        { text: "Sorry, I'm a little slow...", goto: 'quest3NotYet' },
+      ],
+    },
+    quest3NotYet: {
+      text: 'Move your ass, kid!',
+    },
+    questComplete: {
+      text: "Looks like you're ready to go. Good luck out there!",
+      origin: 'questComplete',
+      event: 'complete',
     },
   },
 }
 
-export function Quest2(swordPosition) {
+export function Quest2(swordPosition, armorPosition, shieldPosition) {
   const [view, setView] = useState(false)
   const [mineActive, setMineActive] = useState(false)
   const [visible, setVisible] = useState(false)
   const [mineActive2, setMineActive2] = useState(false)
   const [visible2, setVisible2] = useState(false)
+  const [mineActive3, setMineActive3] = useState(false)
+  const [visible3, setVisible3] = useState(false)
   const [hasSword, setHasSword] = useState(false)
   const [hasArmor, setHasArmor] = useState(false)
+  const [hasShield, setHasShield] = useState(false)
 
   function doClick() {
     setHasSword(true)
@@ -101,6 +127,11 @@ export function Quest2(swordPosition) {
   function doClick2() {
     setHasArmor(true)
     setVisible2(false)
+  }
+
+  function doClick3() {
+    setHasShield(true)
+    setVisible3(false)
   }
 
   return (
@@ -113,27 +144,37 @@ export function Quest2(swordPosition) {
             setVisible(true)
             setMineActive(true)
             setVisible2(true)
+            setVisible3(true)
           }
           if (event === 'mine2') {
             setMineActive2(true)
+          }
+          if (event === 'mine3') {
+            setMineActive3(true)
           }
         }}
         onRequire={name => {
           if (name === 'sword') return hasSword
           if (name === 'armor') return hasArmor
+          if (name === 'shield') return hasShield
         }}
       ></Dialog>
 
-      <model src="army79.glb" rotation={[0, -90, 0]} />
-      <model src="bookshelf.glb" position={[10, 0, -5]} />
-      <model src="swordrack.glb" position={[10, 0, 10]} rotation={[0, 0, 0]} />
+      <model src="army79.glb" scale={7} />
+      <model
+        src="swordrack.glb"
+        position={[0, 0, 0]}
+        rotation={[0, 0, 0]}
+        scale={7}
+      />
 
       {visible && (
         <>
           <model
             src="sword.glb"
-            position={[10, 0, 10]}
+            position={[0, 0, 0]}
             rotation={[0, 0, 0]}
+            scale={7}
             onClick={mineActive ? doClick : null}
           />
         </>
@@ -142,10 +183,21 @@ export function Quest2(swordPosition) {
         <>
           <model
             src="armor.glb"
-            position={[10, 0, 5]}
+            position={[0, 0, 0]}
             rotation={[0, 0, 0]}
-            scale={0.1}
+            scale={7}
             onClick={mineActive2 ? doClick2 : null}
+          />
+        </>
+      )}
+      {visible3 && (
+        <>
+          <model
+            src="shield.glb"
+            position={[0, 0, 0]}
+            rotation={[0, 0, 0]}
+            scale={7}
+            onClick={mineActive3 ? doClick3 : null}
           />
         </>
       )}
