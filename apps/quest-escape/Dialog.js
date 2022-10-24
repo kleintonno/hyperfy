@@ -34,8 +34,8 @@ Option = {
 const noop = () => {}
 const defaults = {
   offset: [-0.9, 1.6, -0.1],
-  near: 30,
-  far: 50,
+  near: 3,
+  far: 5,
   onEvent: noop,
   onRequire: noop,
   onView: noop,

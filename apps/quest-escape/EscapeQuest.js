@@ -88,6 +88,7 @@ export function EscapeQuest(swordPosition, armorPosition, shieldPosition) {
       <Dialog schema={schema} onView={setView}></Dialog>
 
       <model src="army62.glb" scale={7} />
+      <model src="table.glb" scale={7} />
       <model src="bookshelf.glb" scale={7} />
       <model
         src="greenbook.glb"

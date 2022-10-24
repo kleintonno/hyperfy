@@ -118,13 +118,16 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
   const [hasSword, setHasSword] = useState(false)
   const [hasArmor, setHasArmor] = useState(false)
   const [hasShield, setHasShield] = useState(false)
+  {
+    /*
   const world = useWorld()
   const name = world.getAvatar().name
 
   function chatKnight() {
     world.chat(`Sir ${name} has been knighted!`)
   }
-
+*/
+  }
   function doClick() {
     setHasSword(true)
     setVisible(false)
@@ -158,8 +161,11 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
           if (event === 'mine3') {
             setMineActive3(true)
           }
+          {
+            /*
           if (event === 'complete') {
             chatKnight()
+          }*/
           }
         }}
         onRequire={name => {
