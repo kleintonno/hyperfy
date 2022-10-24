@@ -36,13 +36,6 @@ export default function World() {
           allColliders="trimesh"
         />
         <model
-          src="accessories.glb"
-          position={[0, 9, 0]}
-          rotation={[0, 0, 0]}
-          scale={7}
-          allColliders="trimesh"
-        />
-        <model
           src="landscape.glb"
           position={[0, 0, 0]}
           scale={7}

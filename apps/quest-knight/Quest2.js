@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { useWorld } from 'hyperfy'
 import { Dialog } from './Dialog'
 
 /**
@@ -118,6 +118,11 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
   const [hasSword, setHasSword] = useState(false)
   const [hasArmor, setHasArmor] = useState(false)
   const [hasShield, setHasShield] = useState(false)
+  const world = useWorld()
+
+  function chatKnight() {
+    world.chat('Knighted ' + { name } + '!')
+  }
 
   function doClick() {
     setHasSword(true)
@@ -145,6 +150,7 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
             setMineActive(true)
             setVisible2(true)
             setVisible3(true)
+            chatKnight()
           }
           if (event === 'mine2') {
             setMineActive2(true)
@@ -169,7 +175,6 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
           <model
             src="sword.glb"
             position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
             scale={7}
             onClick={mineActive ? doClick : null}
           />
@@ -180,7 +185,6 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
           <model
             src="armor.glb"
             position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
             scale={7}
             onClick={mineActive2 ? doClick2 : null}
           />
@@ -191,7 +195,6 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
           <model
             src="shield.glb"
             position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
             scale={7}
             onClick={mineActive3 ? doClick3 : null}
           />
