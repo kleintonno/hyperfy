@@ -17,7 +17,7 @@ const schema = {
   origin: 'intro',
   views: {
     intro: {
-      text: 'So you want to become a knight?',
+      text: `So you want to become a knight?`,
       goto: 'quest1Ask',
     },
     quest1Ask: {
@@ -100,7 +100,7 @@ const schema = {
       text: 'Move your ass, kid!',
     },
     questComplete: {
-      text: "Looks like you're ready to go. Good luck out there!",
+      text: 'Congratulations on joining the Order of Acandar Knights. Good luck out there!',
       origin: 'questComplete',
       event: 'complete',
     },
@@ -119,9 +119,10 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
   const [hasArmor, setHasArmor] = useState(false)
   const [hasShield, setHasShield] = useState(false)
   const world = useWorld()
+  const name = world.getAvatar().name
 
   function chatKnight() {
-    world.chat('Knighted ' + { name } + '!')
+    world.chat(`Sir ${name} has been knighted!`)
   }
 
   function doClick() {
@@ -150,13 +151,15 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
             setMineActive(true)
             setVisible2(true)
             setVisible3(true)
-            chatKnight()
           }
           if (event === 'mine2') {
             setMineActive2(true)
           }
           if (event === 'mine3') {
             setMineActive3(true)
+          }
+          if (event === 'complete') {
+            chatKnight()
           }
         }}
         onRequire={name => {

@@ -7,38 +7,42 @@ const anim = new Tween({ z: -8.5 })
   .to({ z: -8.5 }, 4, Tween.QUAD_IN_OUT)
   .loop()
 
-  const anim2 = new Tween({ z: -20 })
+const anim2 = new Tween({ z: -20 })
   .to({ z: -8.5 }, 3, Tween.QUAD_IN_OUT)
   .wait(0.1)
   .to({ z: -20 }, 3, Tween.QUAD_IN_OUT)
   .loop()
 
-  const anim3 = new Tween({ z: -8.5 })
+const anim3 = new Tween({ z: -8.5 })
   .to({ z: -20 }, 3.5, Tween.QUAD_IN_OUT)
   .to({ z: -8.5 }, 3.5, Tween.QUAD_IN_OUT)
   .loop()
 
-  const anim4 = new Tween({ z: -20 })
+const anim4 = new Tween({ z: -20 })
   .to({ z: -8.5 }, 2.5, Tween.QUAD_IN_OUT)
   .wait(0.1)
   .to({ z: -20 }, 2.5, Tween.QUAD_IN_OUT)
   .loop()
 
-  {/*Launcher*/}
-  const anim5 = new Tween({ z: -52 })
+{
+  /*Launcher*/
+}
+const anim5 = new Tween({ z: -52 })
   .to({ z: -61 }, 2, Tween.QUAD_IN_OUT)
   .wait(0.1)
   .to({ z: -52 }, 2, Tween.QUAD_IN_OUT)
   .loop()
 
-  {/*Launcher
+{
+  /*Launcher
   const anim5 = new Tween({ y: 80 },{ z: -20 })
   .to({y: 70, z: -8.5 }, 3, Tween.QUAD_IN_OUT)
   .wait(0.1)
   .to({ y: 80, z: -20 }, 3, Tween.QUAD_IN_OUT)
   .wait(0.1)
   .loop()
-*/}
+*/
+}
 
 export default function World() {
   const bodyRef = useRef()
@@ -48,6 +52,12 @@ export default function World() {
   const bodyRef5 = useRef()
   const engine = useWorld()
   const world = useWorld()
+  const name = world.getAvatar().name
+
+  function safetyNet1() {
+    world.teleport(null, 'maze-start')
+    world.chat(`${name} fell in stage 1!`)
+  }
 
   useEffect(() => {
     const body = bodyRef.current
@@ -73,17 +83,21 @@ export default function World() {
   useEffect(() => {
     const body = bodyRef4.current
     return engine.onUpdate(() => {
-      anim4.set(engine.getServerTime()+1)
+      anim4.set(engine.getServerTime() + 1)
       body.setPositionZ(anim4.value.z)
     })
   }, [])
 
-      {/*Launcher*/}
-      useEffect(() => {
+  {
+    /*Launcher*/
+  }
+  useEffect(() => {
     const body = bodyRef5.current
     return engine.onUpdate(() => {
       anim5.set(engine.getServerTime())
-      {/*body.setPositionY(anim5.value.y)*/}
+      {
+        /*body.setPositionY(anim5.value.y)*/
+      }
       body.setPositionZ(anim5.value.z)
     })
   }, [])
@@ -92,28 +106,42 @@ export default function World() {
     <app>
       {/* elevator */}
       <rigidbody ref={bodyRef} type="kinematic" position={[-9, 32, 0]}>
-      <model src="launcher2.glb" scale={0.4} allColliders="trimesh"/> 
+        <model src="launcher2.glb" scale={0.4} allColliders="trimesh" />
       </rigidbody>
 
       <rigidbody ref={bodyRef2} type="kinematic" position={[-4.5, 32, 0]}>
-      <model src="launcher2.glb" scale={0.4} allColliders="trimesh"/> 
-      </rigidbody>  
+        <model src="launcher2.glb" scale={0.4} allColliders="trimesh" />
+      </rigidbody>
 
       <rigidbody ref={bodyRef3} type="kinematic" position={[0, 32, 0]}>
-      <model src="launcher2.glb" scale={0.4} allColliders="trimesh"/> 
-      </rigidbody>  
+        <model src="launcher2.glb" scale={0.4} allColliders="trimesh" />
+      </rigidbody>
 
       <rigidbody ref={bodyRef4} type="kinematic" position={[4.5, 32, 0]}>
-      <model src="launcher2.glb" scale={0.4} allColliders="trimesh"/> 
-      </rigidbody>  
-
+        <model src="launcher2.glb" scale={0.4} allColliders="trimesh" />
+      </rigidbody>
 
       {/*Launcher GLB*/}
       <rigidbody ref={bodyRef5} type="kinematic">
-      <model src="launcher.glb" position={[-97.33, 59, 0]} scale={0.3} allColliders="trimesh"/>       
-      <model src="launcher.glb" position={[-88.33, 57.15, 0]} scale={0.3} allColliders="trimesh"/>       
-      <model src="launcher.glb" position={[-79.33, 55.15, 0]} scale={0.3} allColliders="trimesh"/>       
-      </rigidbody> 
+        <model
+          src="launcher.glb"
+          position={[-97.33, 59, 0]}
+          scale={0.3}
+          allColliders="trimesh"
+        />
+        <model
+          src="launcher.glb"
+          position={[-88.33, 57.15, 0]}
+          scale={0.3}
+          allColliders="trimesh"
+        />
+        <model
+          src="launcher.glb"
+          position={[-79.33, 55.15, 0]}
+          scale={0.3}
+          allColliders="trimesh"
+        />
+      </rigidbody>
 
       {/*  47733c floor 
       <rigidbody>
@@ -121,139 +149,227 @@ export default function World() {
       </rigidbody> */}
 
       {/*Pattern Maze*/}
-        <rigidbody> 
-        <model src="pattern maze_desc.glb" position={[16,30,-27]} scale={1}/>
-        </rigidbody>
+      <rigidbody>
+        <model src="pattern maze_desc.glb" position={[16, 30, -27]} scale={1} />
+      </rigidbody>
       {/*NFT Credits*/}
-      {<billboard position={[-142.2,74,-17]} axis="y">
-        <text
-          value={'Owned by @Felipeeee.sol'}
-          bgColor="blue"
-          color="yellow"
-          bgRadius={0.1}
-          padding={0.2}
-          onClick={e => {engine.open('https://twitter.com/Profeten_Felipe', true)}} // open link in a new tab
+      {
+        <billboard position={[-142.2, 74, -17]} axis="y">
+          <text
+            value={'Owned by @Felipeeee.sol'}
+            bgColor="blue"
+            color="yellow"
+            bgRadius={0.1}
+            padding={0.2}
+            onClick={e => {
+              engine.open('https://twitter.com/Profeten_Felipe', true)
+            }} // open link in a new tab
+          />
+        </billboard>
+      }
+      {
+        <billboard position={[-100.2, 67, -17]} axis="y">
+          <text
+            value={'Owned by @0xpeti'}
+            bgColor="blue"
+            color="yellow"
+            bgRadius={0.1}
+            padding={0.2}
+            onClick={e => {
+              engine.open('https://twitter.com/0xpeti', true)
+            }} // open link in a new tab
+          />
+        </billboard>
+      }
+      {
+        <billboard position={[-107, 60, -59.5]} axis="y">
+          <text
+            value={'Owned by @upscule'}
+            bgColor="blue"
+            color="yellow"
+            bgRadius={0.1}
+            padding={0.2}
+            onClick={e => {
+              engine.open('https://twitter.com/upscule', true)
+            }} // open link in a new tab
+          />
+        </billboard>
+      }
+      {
+        <billboard position={[-65, 54, -53.5]} axis="y">
+          <text
+            value={'Owned by @Dyzrel.sol'}
+            bgColor="blue"
+            color="yellow"
+            bgRadius={0.1}
+            padding={0.2}
+            onClick={e => {
+              engine.open('https://twitter.com/Dyzrel.sol', true)
+            }} // open link in a new tab
+          />
+        </billboard>
+      }
+      {
+        <billboard position={[-74, 46, -8]} axis="y">
+          <text
+            value={'Owned by @Sidvicious843'}
+            bgColor="blue"
+            color="yellow"
+            bgRadius={0.1}
+            padding={0.2}
+            onClick={e => {
+              engine.open('https://twitter.com/Sidvicious843', true)
+            }} // open link in a new tab
+          />
+        </billboard>
+      }
+      {
+        <billboard position={[-13, 34, -21]} axis="y">
+          <text
+            value={'Owned by @rganizedgeneral'}
+            bgColor="blue"
+            color="yellow"
+            bgRadius={0.1}
+            padding={0.2}
+            onClick={e => {
+              engine.open('https://twitter.com/rganizedgeneral', true)
+            }} // open link in a new tab
+          />
+        </billboard>
+      }
+
+      {/*Surrender*/}
+      <rigidbody>
+        <model
+          src="army33.glb"
+          position={[-142.7, 72.5, -24]}
+          rotation={[0, 45, 0]}
+          scale={1}
+          allColliders="trimesh"
         />
-      </billboard>}
-      {<billboard position={[-100.2,67,-17]} axis="y">
-        <text
-          value={'Owned by @0xpeti'}
-          bgColor="blue"
-          color="yellow"
-          bgRadius={0.1}
-          padding={0.2}
-          onClick={e => {engine.open('https://twitter.com/0xpeti', true)}} // open link in a new tab
+      </rigidbody>
+      {
+        <billboard position={[-142.7, 75, -24]} axis="y">
+          <text
+            value={'Surrender?'}
+            bgColor="black"
+            color="white"
+            bgRadius={0.1}
+            padding={0.2}
+          />
+        </billboard>
+      }
+
+      {/*Safety Net*/}
+      <place label="maze-start" position={[-140, 120, -22]} rotationY={-90} />
+      <trigger
+        position={[-120, 50, -20]}
+        size={[50, 0.1, 15]}
+        onEnter={() => safetyNet1()}
+      />
+      <trigger
+        position={[-104, 40, -35]}
+        size={[15, 0.1, 32]}
+        onEnter={() => world.teleport(null, 'maze-start')}
+      />
+
+      <place
+        label="maze-checkpoint1"
+        position={[-105, 100, -57]}
+        rotationY={-90}
+      />
+      <trigger
+        position={[-85, 35, -58]}
+        size={[45, 0.1, 15]}
+        onEnter={() => world.teleport(null, 'maze-checkpoint1')}
+      />
+      <trigger
+        position={[-68, 26, -30]}
+        size={[15, 0.1, 50]}
+        onEnter={() => world.teleport(null, 'maze-checkpoint1')}
+      />
+
+      <place
+        label="maze-checkpoint2"
+        position={[-67, 80, -13]}
+        rotationY={-90}
+      />
+      <trigger
+        position={[-40, 21, -14]}
+        size={[50, 0.1, 25]}
+        onEnter={() => world.teleport(null, 'maze-checkpoint2')}
+      />
+      <trigger
+        position={[-9, 15, -14]}
+        size={[25, 0.1, 25]}
+        onEnter={() => world.teleport(null, 'maze-checkpoint2')}
+      />
+
+      {/*Checkpoint1*/}
+      <rigidbody>
+        <model
+          src="army33.glb"
+          position={[-104.5, 58.5, -59.5]}
+          rotation={[0, -45, 0]}
+          scale={1}
+          allColliders="trimesh"
         />
-      </billboard>}
-      {<billboard position={[-107,60,-59.5]} axis="y">
-        <text
-          value={'Owned by @upscule'}
-          bgColor="blue"
-          color="yellow"
-          bgRadius={0.1}
-          padding={0.2}
-          onClick={e => {engine.open('https://twitter.com/upscule', true)}} // open link in a new tab
+      </rigidbody>
+      {
+        <billboard position={[-104.5, 60, -59.5]} axis="y">
+          <text
+            value={'Checkpoint'}
+            bgColor="black"
+            color="white"
+            bgRadius={0.1}
+            padding={0.2}
+          />
+        </billboard>
+      }
+
+      {/*Checkpoint2*/}
+      <rigidbody>
+        <model
+          src="army33.glb"
+          position={[-74, 44.5, -19.5]}
+          rotation={[0, 90, 0]}
+          scale={1}
+          allColliders="trimesh"
         />
-      </billboard>}
-      {<billboard position={[-65,54,-53.5]} axis="y">
-        <text
-          value={'Owned by @Dyzrel.sol'}
-          bgColor="blue"
-          color="yellow"
-          bgRadius={0.1}
-          padding={0.2}
-          onClick={e => {engine.open('https://twitter.com/Dyzrel.sol', true)}} // open link in a new tab
+      </rigidbody>
+      {
+        <billboard position={[-74, 47, -19.5]} axis="y">
+          <text
+            value={'Checkpoint'}
+            bgColor="black"
+            color="white"
+            bgRadius={0.1}
+            padding={0.2}
+          />
+        </billboard>
+      }
+
+      {/*Exit*/}
+      <rigidbody>
+        <model
+          src="army33.glb"
+          position={[21, 32.4, -20.3]}
+          rotation={[0, 0, 0]}
+          scale={1}
+          allColliders="trimesh"
         />
-      </billboard>}
-      {<billboard position={[-74,46,-8]} axis="y">
-        <text
-          value={'Owned by @Sidvicious843'}
-          bgColor="blue"
-          color="yellow"
-          bgRadius={0.1}
-          padding={0.2}
-          onClick={e => {engine.open('https://twitter.com/Sidvicious843', true)}} // open link in a new tab
-        />
-      </billboard>}
-      {<billboard position={[-13,34,-21]} axis="y">
-        <text
-          value={'Owned by @rganizedgeneral'}
-          bgColor="blue"
-          color="yellow"
-          bgRadius={0.1}
-          padding={0.2}
-          onClick={e => {engine.open('https://twitter.com/rganizedgeneral', true)}} // open link in a new tab
-        />
-      </billboard>}
-
-        {/*Surrender*/}
-          <rigidbody>
-            <model src="army33.glb" position={[-142.7,72.5,-24]} rotation={[0,45,0]} scale={1} allColliders="trimesh"/>
-          </rigidbody>
-          {<billboard position={[-142.7,75,-24]} axis="y">
-            <text
-              value={'Surrender?'}
-              bgColor="black"
-              color="white"
-              bgRadius={0.1}
-              padding={0.2}
-            />
-          </billboard>}  
-
-        {/*Safety Net*/}
-          <place label="maze-start" position={[-140,120,-22]} rotationY={-90} />
-          <trigger position={[-120, 50, -20]} size={[50, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-start')} />
-          <trigger position={[-104, 40, -35]} size={[15,0.1,32]} onEnter={() => world.teleport(null, 'maze-start')} />
-
-          <place label="maze-checkpoint1" position={[-105,100,-57]} rotationY={-90} />
-          <trigger position={[-85, 35, -58]} size={[45, 0.1, 15]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} />
-          <trigger position={[-68, 26, -30]} size={[15, 0.1, 50]} onEnter={() => world.teleport(null, 'maze-checkpoint1')} />
-
-          <place label="maze-checkpoint2" position={[-67,80,-13]} rotationY={-90} />
-          <trigger position={[-40, 21, -14]} size={[50, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint2')} />
-          <trigger position={[-9, 15, -14]} size={[25, 0.1, 25]} onEnter={() => world.teleport(null, 'maze-checkpoint2')} />
-
-       {/*Checkpoint1*/}
-       <rigidbody>
-            <model src="army33.glb" position={[-104.5,58.5,-59.5]} rotation={[0,-45,0]} scale={1} allColliders="trimesh"/>
-          </rigidbody>
-          {<billboard position={[-104.5,60,-59.5]} axis="y">
-            <text
-              value={'Checkpoint'}
-              bgColor="black"
-              color="white"
-              bgRadius={0.1}
-              padding={0.2}
-            />
-          </billboard>}
-
-       {/*Checkpoint2*/}
-       <rigidbody>
-            <model src="army33.glb" position={[-74,44.5,-19.5]} rotation={[0,90,0]} scale={1} allColliders="trimesh"/>
-          </rigidbody>
-          {<billboard position={[-74,47,-19.5]} axis="y">
-            <text
-              value={'Checkpoint'}
-              bgColor="black"
-              color="white"
-              bgRadius={0.1}
-              padding={0.2}
-            />
-          </billboard>}
-
-        {/*Exit*/}
-        <rigidbody>
-            <model src="army33.glb" position={[21,32.4,-20.3]} rotation={[0,0,0]} scale={1} allColliders="trimesh"/>
-          </rigidbody>
-          {<billboard position={[21,34.9,-20.3]} axis="y">
-            <text
-              value={'Exit?'}
-              bgColor="black"
-              color="white"
-              bgRadius={0.1}
-              padding={0.2}
-            />
-          </billboard>}      
+      </rigidbody>
+      {
+        <billboard position={[21, 34.9, -20.3]} axis="y">
+          <text
+            value={'Exit?'}
+            bgColor="black"
+            color="white"
+            bgRadius={0.1}
+            padding={0.2}
+          />
+        </billboard>
+      }
     </app>
   )
 }

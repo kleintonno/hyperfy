@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Erika } from './Erika'
+import { EscapeQuest } from './EscapeQuest'
 
 /**
  * To create your own emotive NPCs with dialog and quests, follow along
@@ -17,12 +17,11 @@ import { Erika } from './Erika'
 export default function Environment() {
   return (
     <app>
-      <Erika position={[0, 0, 0]} armorPosition={[-10, 0, 10]} swordPosition={[10,0,10]}/>
+      <EscapeQuest />
 
       {/* <Erika position={[0, 0, 0]} armorPosition={[-82, 25, 83]} swordPosition={[140,11,-588]}/>*/}
 
-      <model src="swordrack.glb" position={[10,0,10]} rotation={[0,0,0]} />
-
+      <model src="bookshelf.glb" scale={7} />
     </app>
   )
 }
