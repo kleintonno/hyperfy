@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useWorld } from 'hyperfy'
 import { Dialog } from './Dialog'
 
@@ -38,15 +38,20 @@ export function MazeQuest() {
   const [visible2, setVisible2] = useState(true) //door2
   const [visible3, setVisible3] = useState(true) //door3
   const [visible4, setVisible4] = useState(true) //door4
+  const [visible5, setVisible5] = useState(true) //door5
   const world = useWorld()
+  const sound1Ref = useRef() //door open sound (scifi)
+  const sound2Ref = useRef() //door close sound
 
   function chatOpen() {
     const name = world.getAvatar().name
     world.chat(`${name} has opened a door!`)
+    sound1Ref.current.play()
   }
   function chatClose() {
     const name = world.getAvatar().name
     world.chat(`${name} has closed a door!`)
+    sound2Ref.current.play()
   }
   function chatWinner() {
     const name = world.getAvatar().name
@@ -88,6 +93,13 @@ export function MazeQuest() {
   function end() {
     chatWinner()
   }
+
+  function open5() {
+    //npc7
+    setVisible5(false)
+    chatOpen()
+  }
+
   return (
     <>
       <Dialog
@@ -96,6 +108,7 @@ export function MazeQuest() {
         onEvent={event => {
           if (event === 'opendoor1') {
             setVisible(false)
+            chatOpen()
           }
           if (event === 'complete') {
             chatKnight()
@@ -111,6 +124,7 @@ export function MazeQuest() {
         <model src="npc4.glb" scale={1} onClick={close3} />
         <model src="npc5.glb" scale={1} onClick={open3} />
         <model src="npc6.glb" scale={1} onClick={close4} />
+        <model src="npc7.glb" scale={1} onClick={open5} />
         <model src="end.glb" scale={1} onClick={end} />
 
         {visible && (
@@ -153,7 +167,31 @@ export function MazeQuest() {
             />
           </>
         )}
+        {visible5 && (
+          <>
+            <model
+              src="door5.glb"
+              allColliders="trimesh"
+              position={[0, 0, 0]}
+              scale={1}
+            />
+          </>
+        )}
       </rigidbody>
+      <audio
+        src="open.mp3"
+        ref={sound1Ref}
+        autoplay={false}
+        volume={2}
+        spatial={true}
+      ></audio>
+      <audio
+        src="close.mp3"
+        ref={sound2Ref}
+        autoplay={false}
+        volume={3}
+        spatial={true}
+      ></audio>
     </>
   )
 }
