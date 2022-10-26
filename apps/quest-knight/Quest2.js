@@ -101,8 +101,11 @@ const schema = {
     },
     questComplete: {
       text: 'Congratulations on joining the Order of Acandar Knights. Good luck out there!',
-      origin: 'questComplete',
+      origin: 'finale',
       event: 'complete',
+    },
+    finale: {
+      text: 'Damn it feels good to be a gangsta, I mean knight',
     },
   },
 }
@@ -118,16 +121,13 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
   const [hasSword, setHasSword] = useState(false)
   const [hasArmor, setHasArmor] = useState(false)
   const [hasShield, setHasShield] = useState(false)
-  {
-    /*
   const world = useWorld()
-  const name = world.getAvatar().name
 
   function chatKnight() {
+    const name = world.getAvatar().name
     world.chat(`Sir ${name} has been knighted!`)
   }
-*/
-  }
+
   function doClick() {
     setHasSword(true)
     setVisible(false)
@@ -161,11 +161,9 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
           if (event === 'mine3') {
             setMineActive3(true)
           }
-          {
-            /*
+
           if (event === 'complete') {
             chatKnight()
-          }*/
           }
         }}
         onRequire={name => {

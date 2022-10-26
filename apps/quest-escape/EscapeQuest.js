@@ -86,46 +86,55 @@ export function EscapeQuest(swordPosition, armorPosition, shieldPosition) {
   return (
     <>
       <Dialog schema={schema} onView={setView}></Dialog>
+      <rigidbody>
+        <model src="army62.glb" scale={7} />
+        <model src="table.glb" scale={7} />
+        <model src="bookshelf.glb" scale={7} />
+        <model
+          src="greenbook.glb"
+          scale={7}
+          onClick={mineActive4 ? doClick5 : null}
+        />
+        <model
+          src="bluechair.glb"
+          scale={7}
+          onClick={mineActive2 ? doClick3 : null}
+        />
+        <model src="otherchairs.glb" scale={7} />
+        <model
+          src="lamp.glb"
+          scale={7}
+          onClick={mineActive3 ? doClick4 : null}
+        />
 
-      <model src="army62.glb" scale={7} />
-      <model src="table.glb" scale={7} />
-      <model src="bookshelf.glb" scale={7} />
-      <model
-        src="greenbook.glb"
-        scale={7}
-        onClick={mineActive4 ? doClick5 : null}
-      />
-      <model
-        src="bluechair.glb"
-        scale={7}
-        onClick={mineActive2 ? doClick3 : null}
-      />
-      <model src="otherchairs.glb" scale={7} />
-      <model src="lamp.glb" scale={7} onClick={mineActive3 ? doClick4 : null} />
+        {visible && (
+          <>
+            <model
+              src="green_button.glb"
+              position={[0, 0, 0]}
+              scale={7}
+              onClick={mineActive ? doClick : null}
+            />
+            <model
+              src="red_button.glb"
+              position={[0, 0, 0]}
+              scale={7}
+              onClick={mineActive ? doClick2 : null}
+            />
+          </>
+        )}
+        {visible2 && (
+          <model src="door_open.glb" position={[0, 0, 0]} scale={7} />
+        )}
 
-      {visible && (
-        <>
-          <model
-            src="green_button.glb"
-            position={[0, 0, 0]}
-            scale={7}
-            onClick={mineActive ? doClick : null}
-          />
-          <model
-            src="red_button.glb"
-            position={[0, 0, 0]}
-            scale={7}
-            onClick={mineActive ? doClick2 : null}
-          />
-        </>
-      )}
-      {visible2 && <model src="door_open.glb" position={[0, 0, 0]} scale={7} />}
+        {visible3 && (
+          <model src="door_closed.glb" position={[0, 0, 0]} scale={7} />
+        )}
 
-      {visible3 && (
-        <model src="door_closed.glb" position={[0, 0, 0]} scale={7} />
-      )}
-
-      {visible4 && <model src="lamp_lit.glb" position={[0, 0, 0]} scale={7} />}
+        {visible4 && (
+          <model src="lamp_lit.glb" position={[0, 0, 0]} scale={7} />
+        )}
+      </rigidbody>
     </>
   )
 }
