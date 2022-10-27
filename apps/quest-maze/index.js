@@ -9,7 +9,7 @@ export default function World() {
     <>
       <app>
         <MazeQuest />
-        <place label="Maze Quest" position={[0, 0, 2.5]} rotationY={0} />
+        <place label="maze_quest" position={[0, 0, 2.5]} rotationY={0} />
       </app>
     </>
   )
