@@ -36,12 +36,6 @@ export default function World() {
           allColliders="trimesh"
         />
         <model
-          src="landscape.glb"
-          position={[0, 0, 0]}
-          scale={7}
-          allColliders="trimesh"
-        />
-        <model
           src="house1.glb"
           position={[0, 9, 0]}
           scale={7}
@@ -95,7 +89,7 @@ export default function World() {
         position={[-15, 2.75, 12]}
         rotationY={-160}
       />
-      <place label="Outer Wall" position={[85, 18, -569]} rotationY={-55} />
+      <place label="outer_wall" position={[-116, 18, -485]} rotationY={-55} />
 
       {/* a trigger box that teleports when you walk on it */}
       {/*<group position={[-2, 0.05, -3]}>

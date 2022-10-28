@@ -105,7 +105,7 @@ const schema = {
       event: 'complete',
     },
     finale: {
-      text: 'Damn it feels good to be a gangsta, I mean knight',
+      text: 'Wen helmet?',
     },
   },
 }
@@ -174,8 +174,6 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
       ></Dialog>
 
       <model src="army79.glb" scale={7} />
-      <model src="armor_accessories.glb" scale={7} />
-      <model src="swordrack.glb" scale={7} />
 
       {visible && (
         <>
