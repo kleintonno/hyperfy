@@ -28,6 +28,10 @@ const schema = {
         { text: 'Maybe later', goto: 'quest1Reject' },
       ],
     },
+    quest1Alternate: {
+      text: 'Check back with me when you have it.',
+      origin: 'quest1Active',
+    },
     quest1Reject: {
       text: '*Grumble*\n\nKids these days...',
       origin: 'quest1Ask',
@@ -174,7 +178,6 @@ export function Quest2(swordPosition, armorPosition, shieldPosition) {
       ></Dialog>
 
       <model src="army79.glb" scale={7} />
-
       {visible && (
         <>
           <model

@@ -89,7 +89,11 @@ export default function World() {
         position={[-15, 2.75, 12]}
         rotationY={-160}
       />
-      <place label="outer_wall" position={[-116, 18, -485]} rotationY={-55} />
+      <place label="wallfrontright" position={[-40, 18.2, -32]} />
+      <place label="wallfrontleft" position={[35, 18.2, -32]} />
+      <place label="wallbackleft" position={[35, 18.2, 43.6]} />
+      <place label="wallbackright" position={[-41, 18.2, 43.6]} />
+      <place label="escaperoom" position={[-6, 19.5, 21]} />
 
       {/* a trigger box that teleports when you walk on it */}
       {/*<group position={[-2, 0.05, -3]}>
