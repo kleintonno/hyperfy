@@ -161,6 +161,29 @@ export function AssistantQuest(swordPosition, armorPosition, shieldPosition) {
         schema={schema}
         onView={setView}
         onEvent={event => {
+          if (event === 'teleportW1') {
+            world.teleport(null, 'wallfrontright')
+          }
+
+          if (event === 'teleportW2') {
+            world.teleport(null, 'wallfrontleft')
+          }
+
+          if (event === 'teleportW3') {
+            world.teleport(null, 'wallbackleft')
+          }
+
+          if (event === 'teleportW4') {
+            world.teleport(null, 'wallbackright')
+          }
+          if (event === 'platforms') {
+            world.teleport(null, 'maze-start')
+          }
+
+          if (event === 'escape') {
+            world.teleport(null, 'escaperoom')
+          }
+
           if (event === 'maze') {
             world.teleport(null, 'maze_quest')
           }
