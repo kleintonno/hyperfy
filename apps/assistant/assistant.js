@@ -142,59 +142,32 @@ export function AssistantQuest(swordPosition, armorPosition, shieldPosition) {
     setVisible3(false)
   }
 
+  // Erika is sad until she gets her teddy.
+  let animation = mineActive ? 'Idle' : 'Greeting'
+  // If you're talking to her:-
+  if (view) {
+    if (view === 'menu2Games') {
+      animation = 'FistPump'
+    } else if (view === 'menu2Walls') {
+      animation = 'BlowKiss'
+    } else {
+      animation = 'Idle'
+    }
+  }
+
   return (
     <>
       <Dialog
         schema={schema}
         onView={setView}
         onEvent={event => {
-          if (event === 'mine') {
-            setVisible(true)
-            setMineActive(true)
-            setVisible2(true)
-            setVisible3(true)
-          }
-          if (event === 'mine2') {
-            setMineActive2(true)
-          }
-          if (event === 'mine3') {
-            setMineActive3(true)
-          }
-
-          if (event === 'complete') {
-            chatKnight()
-          }
-
-          if (event === 'teleportW1') {
-            world.teleport(null, 'wallfrontright')
-          }
-
-          if (event === 'teleportW2') {
-            world.teleport(null, 'wallfrontleft')
-          }
-
-          if (event === 'teleportW3') {
-            world.teleport(null, 'wallbackleft')
-          }
-
-          if (event === 'teleportW4') {
-            world.teleport(null, 'wallbackright')
-          }
-          if (event === 'platforms') {
-            world.teleport(null, 'maze-start')
-          }
-
-          if (event === 'escape') {
-            world.teleport(null, 'escaperoom')
-          }
-
           if (event === 'maze') {
             world.teleport(null, 'maze_quest')
           }
         }}
       ></Dialog>
       <rigidbody>
-        <model src="assistant.glb" scale={7} />
+        <model src="assistant.glb" scale={7} animate={animation} />
       </rigidbody>
     </>
   )
