@@ -25,8 +25,8 @@ const schema = {
       origin: 'menu1',
       options: [
         { text: 'Play some games', goto: 'menu2Games' },
-        { text: 'Patrol the curtain wall', goto: 'menu2Walls' },
-        { text: 'Explore some new spots', goto: 'menuExplore' },
+        { text: 'Patrol the wall', goto: 'menu2Walls' },
+        { text: 'Explore', goto: 'menuExplore' },
         { text: 'Dance with me', goto: 'menuDance' },
       ],
     },

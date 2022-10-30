@@ -94,6 +94,7 @@ export default function World() {
       <place label="wallbackleft" position={[35, 18.2, 43.6]} />
       <place label="wallbackright" position={[-41, 18.2, 43.6]} />
       <place label="escaperoom" position={[-6, 19.5, 21]} />
+      <place label="outerwall" position={[-117, 18.2, -487.5]} rotation={180} />
 
       {/* a trigger box that teleports when you walk on it */}
       {/*<group position={[-2, 0.05, -3]}>
@@ -107,7 +108,7 @@ export default function World() {
       </group>*/}
 
       {/* ground and spawn point */}
-      {/*<spawn position={[-3, 3, -28]} rotation={180}/> */}
+      {/*<spawn position={[-3, 3, -28]} */}
     </app>
   )
 }
