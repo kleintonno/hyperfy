@@ -24,8 +24,10 @@ const schema = {
       text: 'Would you like to...',
       origin: 'menu1',
       options: [
-        { text: 'Explore mini games.', goto: 'menu2Games' },
-        { text: 'Patrol the curtain wall.', goto: 'menu2Walls' },
+        { text: 'Play some games', goto: 'menu2Games' },
+        { text: 'Patrol the curtain wall', goto: 'menu2Walls' },
+        { text: 'Explore some new spots', goto: 'menuExplore' },
+        { text: 'Dance with me', goto: 'menuDance' },
       ],
     },
     menu2Games: {
@@ -36,6 +38,7 @@ const schema = {
         { text: 'Escape Room', event: 'escape' },
         { text: 'Maze', event: 'maze' },
         { text: 'Knight Quest' },
+        { text: 'Back', goto: 'menu1' },
       ],
     },
     menu2Walls: {
@@ -46,8 +49,18 @@ const schema = {
         { text: 'Front Left', event: 'teleportW2' },
         { text: 'Back Left', event: 'teleportW3' },
         { text: 'Back Right', event: 'teleportW4' },
+        { text: 'Back', goto: 'menu1' },
       ],
     },
+    menuExplore: {
+      text: 'Where would you like to go?',
+      options: [{ text: 'Back', goto: 'menu1' }],
+    },
+    menuDance: {
+      text: "Let's see what you got!",
+      options: [{ text: 'Back', goto: 'menu1' }],
+    },
+
     quest2Ask: {
       event: 'quest1Complete',
       text: "Well done! Next, you'll need armor. We have spares at the outer wall armory.",
@@ -147,9 +160,11 @@ export function AssistantQuest(swordPosition, armorPosition, shieldPosition) {
   // If you're talking to her:-
   if (view) {
     if (view === 'menu2Games') {
-      animation = 'FistPump'
+      animation = 'Excited'
     } else if (view === 'menu2Walls') {
-      animation = 'BlowKiss'
+      animation = 'FistPump'
+    } else if (view === 'menuDance') {
+      animation = 'BellyDance'
     } else {
       animation = 'Idle'
     }
