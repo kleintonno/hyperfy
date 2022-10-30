@@ -33,7 +33,7 @@ Option = {
 
 const noop = () => {}
 const defaults = {
-  offset: [-0.9, 1.6, -0.1],
+  offset: [-0.7, 1.4, 0.3],
   near: 3,
   far: 5,
   onEvent: noop,
