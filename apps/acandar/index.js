@@ -95,6 +95,8 @@ export default function World() {
       <place label="wallbackright" position={[-41, 18.2, 43.6]} />
       <place label="escaperoom" position={[-6, 19.5, 21]} />
       <place label="outerwall" position={[-117, 18.2, -487.5]} rotation={180} />
+      <place label="boat" position={[-179, 10.2, -63]} />
+      <place label="mill" position={[1, 1.45, -145.5]} />
 
       {/* a trigger box that teleports when you walk on it */}
       {/*<group position={[-2, 0.05, -3]}>

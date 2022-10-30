@@ -24,11 +24,16 @@ const schema = {
       text: 'Would you like to...',
       origin: 'menu1',
       options: [
+        { text: 'What is Acandar?', goto: 'menuAcandar' },
         { text: 'Play some games', goto: 'menu2Games' },
         { text: 'Patrol the wall', goto: 'menu2Walls' },
         { text: 'Explore', goto: 'menuExplore' },
         { text: 'Dance with me', goto: 'menuDance' },
       ],
+    },
+    menuAcandar: {
+      text: 'Acandar is a refuge from the destruction of our homeworld. Brave knights and mighty wizards are needed to rebuild our civilization.',
+      origin: 'intro',
     },
     menu2Games: {
       text: 'Where would you like to go?',
@@ -56,6 +61,8 @@ const schema = {
       text: 'Where would you like to go?',
       options: [
         { text: 'Outer Wall', event: 'teleportOW' },
+        { text: "Admiral's Flagship", event: 'teleportBoat' },
+        { text: 'Lumber Mill', event: 'teleportMill' },
         { text: 'Back', goto: 'menu1' },
       ],
     },
@@ -122,6 +129,14 @@ export function AssistantQuest(swordPosition, armorPosition, shieldPosition) {
 
           if (event === 'maze') {
             world.teleport(null, 'maze_quest')
+          }
+
+          if (event === 'teleportBoat') {
+            world.teleport(null, 'boat')
+          }
+
+          if (event === 'teleportMill') {
+            world.teleport(null, 'mill')
           }
         }}
       ></Dialog>
