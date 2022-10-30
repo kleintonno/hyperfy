@@ -125,7 +125,7 @@ export function AssistantQuest(swordPosition, armorPosition, shieldPosition) {
           }
         }}
       ></Dialog>
-      <model src="assistant.glb" scale={7} animate={animation} />
+      <model src="assistant.glb" animate={animation} />
     </>
   )
 }
