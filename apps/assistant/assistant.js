@@ -17,33 +17,34 @@ const schema = {
   origin: 'intro',
   views: {
     intro: {
-      text: `Welcome to Acandar. How may I help you?`,
-      goto: 'menu1',
-    },
-    menu1: {
-      text: 'Would you like to...',
-      origin: 'menu1',
+      text: `Welcome to Acandar. My name is Alice. How may I help you?`,
       options: [
         { text: 'What is Acandar?', goto: 'menuAcandar' },
-        { text: 'Play some games', goto: 'menu2Games' },
-        { text: 'Patrol the wall', goto: 'menu2Walls' },
-        { text: 'Explore', goto: 'menuExplore' },
-        { text: 'Dance with me', goto: 'menuDance' },
+        { text: 'Quests & Challenges', goto: 'menu2Games' },
+        { text: 'Explore Acandar', goto: 'menuExplore' },
+        { text: 'Care to dance?', goto: 'menuDance' },
+        { text: 'Good bye' },
       ],
     },
     menuAcandar: {
       text: 'Acandar is a refuge from the destruction of our homeworld. Brave knights and mighty wizards are needed to rebuild our civilization.',
-      origin: 'intro',
+      options: [
+        { text: 'How can I help? (TBA)' },
+        { text: 'Are those portals? (TBA)' },
+        { text: 'Back', goto: 'intro' },
+        { text: 'Good bye' },
+      ],
     },
     menu2Games: {
-      text: 'Where would you like to go?',
+      text: 'To separate the worthy from the chaff, we have designed challenges of valor and wit.',
       origin: 'intro',
       options: [
-        { text: 'Platforms', event: 'platforms' },
+        { text: 'Platforms/Patterns', event: 'platforms' },
         { text: 'Escape Room', event: 'escape' },
         { text: 'Maze', event: 'maze' },
-        { text: 'Knight Quest' },
-        { text: 'Back', goto: 'menu1' },
+        { text: 'Knight Quest', goto: 'menuKnight' },
+        { text: 'Back', goto: 'intro' },
+        { text: 'Good bye' },
       ],
     },
     menu2Walls: {
@@ -54,21 +55,28 @@ const schema = {
         { text: 'Front Left', event: 'teleportW2' },
         { text: 'Back Left', event: 'teleportW3' },
         { text: 'Back Right', event: 'teleportW4' },
-        { text: 'Back', goto: 'menu1' },
+        { text: 'Back', goto: 'intro' },
+        { text: 'Good bye' },
       ],
     },
     menuExplore: {
       text: 'Where would you like to go?',
       options: [
-        { text: 'Outer Wall', event: 'teleportOW' },
-        { text: "Admiral's Flagship", event: 'teleportBoat' },
+        { text: 'Castle wall', goto: 'menu2Walls' },
+        { text: 'Outer wall', event: 'teleportOW' },
+        { text: "Admiral's flagship", event: 'teleportBoat' },
         { text: 'Lumber Mill', event: 'teleportMill' },
-        { text: 'Back', goto: 'menu1' },
+        { text: 'Back', goto: 'intro' },
+        { text: 'Good bye' },
       ],
     },
     menuDance: {
       text: "Let's see what you got!",
-      options: [{ text: 'Back', goto: 'menu1' }],
+      options: [{ text: 'Back', goto: 'intro' }, { text: 'Good bye' }],
+    },
+    menuKnight: {
+      text: 'Talk to Captain Sterling by the stairwell.',
+      options: [{ text: 'Back', goto: 'intro' }, { text: 'Good bye' }],
     },
   },
 }
