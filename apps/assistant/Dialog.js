@@ -151,15 +151,15 @@ function Popup({ schema, position, onView, onEvent, onRequire, onEnd }) {
       >
         <image
           src={view.goto ? 'dialog-text-bg.png' : 'dialog-text-bg-end.png'}
-          width={1}
+          width={1.3}
           position={[0, 0, -0.01]}
           lit={false}
         />
         <text
           value={view.text}
           color="white"
-          fontSize={0.08}
-          maxWidth={1.25}
+          fontSize={0.07}
+          maxWidth={1.2}
           align="center"
           anchorX="center"
           anchorY="middle"
@@ -182,7 +182,7 @@ function Popup({ schema, position, onView, onEvent, onRequire, onEnd }) {
             <text
               value={option.text}
               color="yellow"
-              fontSize={0.08}
+              fontSize={0.07}
               maxWidth={1.1}
               align="center"
               anchorX={'center'}

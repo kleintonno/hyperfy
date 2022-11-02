@@ -261,7 +261,7 @@ export default function World() {
       }
 
       {/*Safety Net*/}
-      <place label="maze-start" position={[-140, 120, -22]} rotationY={-90} />
+      <place label="maze-start" position={[-140, 100, -22]} rotationY={-90} />
       <trigger
         position={[-120, 50, -20]}
         size={[50, 0.1, 15]}

@@ -81,7 +81,7 @@ const schema = {
   },
 }
 
-export function AssistantQuest(swordPosition, armorPosition, shieldPosition) {
+export function AssistantQuest() {
   const [view, setView] = useState(false)
   const [mineActive, setMineActive] = useState(false)
   const world = useWorld()
