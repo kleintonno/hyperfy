@@ -188,7 +188,8 @@ export default function World() {
       <place label="pattern-start" position={[-140, 80, -22]} rotationY={-90} />
       <trigger
         position={[-120, 50, -20]}
-        size={[50, 0.1, 15]}
+        size={[50, 0.1, 20]}
+        onEnter={() => world.teleport(null, 'pattern-start')}
         //onEnter={() => safetyNet1()}
       />
       <trigger
