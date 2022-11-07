@@ -52,13 +52,16 @@ export default function World() {
   const bodyRef5 = useRef()
   const engine = useWorld()
   const world = useWorld()
-  const name = world.getAvatar().name
 
+  {
+    /*}
   function safetyNet1() {
+    const name = world.getAvatar().name
     world.teleport(null, 'maze-start')
     world.chat(`${name} fell in stage 1!`)
   }
-
+*/
+  }
   useEffect(() => {
     const body = bodyRef.current
     return engine.onUpdate(() => {
@@ -153,77 +156,7 @@ export default function World() {
         <model src="pattern maze_desc.glb" position={[16, 30, -27]} scale={1} />
       </rigidbody>
       {/*NFT Credits*/}
-      {
-        <billboard position={[-142.2, 74, -17]} axis="y">
-          <text
-            value={'Owned by @Felipeeee.sol'}
-            bgColor="blue"
-            color="yellow"
-            bgRadius={0.1}
-            padding={0.2}
-            onClick={e => {
-              engine.open('https://twitter.com/Profeten_Felipe', true)
-            }} // open link in a new tab
-          />
-        </billboard>
-      }
-      {
-        <billboard position={[-100.2, 67, -17]} axis="y">
-          <text
-            value={'Owned by @0xpeti'}
-            bgColor="blue"
-            color="yellow"
-            bgRadius={0.1}
-            padding={0.2}
-            onClick={e => {
-              engine.open('https://twitter.com/0xpeti', true)
-            }} // open link in a new tab
-          />
-        </billboard>
-      }
-      {
-        <billboard position={[-107, 60, -59.5]} axis="y">
-          <text
-            value={'Owned by @upscule'}
-            bgColor="blue"
-            color="yellow"
-            bgRadius={0.1}
-            padding={0.2}
-            onClick={e => {
-              engine.open('https://twitter.com/upscule', true)
-            }} // open link in a new tab
-          />
-        </billboard>
-      }
-      {
-        <billboard position={[-65, 54, -53.5]} axis="y">
-          <text
-            value={'Owned by @Dyzrel.sol'}
-            bgColor="blue"
-            color="yellow"
-            bgRadius={0.1}
-            padding={0.2}
-            onClick={e => {
-              engine.open('https://twitter.com/Dyzrel.sol', true)
-            }} // open link in a new tab
-          />
-        </billboard>
-      }
-      {
-        <billboard position={[-74, 46, -8]} axis="y">
-          <text
-            value={'Owned by @Sidvicious843'}
-            bgColor="blue"
-            color="yellow"
-            bgRadius={0.1}
-            padding={0.2}
-            onClick={e => {
-              engine.open('https://twitter.com/Sidvicious843', true)
-            }} // open link in a new tab
-          />
-        </billboard>
-      }
-      {
+      {/*
         <billboard position={[-13, 34, -21]} axis="y">
           <text
             value={'Owned by @rganizedgeneral'}
@@ -236,20 +169,11 @@ export default function World() {
             }} // open link in a new tab
           />
         </billboard>
-      }
+      */}
 
       {/*Surrender*/}
-      <rigidbody>
-        <model
-          src="army33.glb"
-          position={[-142.7, 72.5, -24]}
-          rotation={[0, 45, 0]}
-          scale={1}
-          allColliders="trimesh"
-        />
-      </rigidbody>
       {
-        <billboard position={[-142.7, 75, -24]} axis="y">
+        <billboard position={[-142.2, 75, -23.5]} axis="y">
           <text
             value={'Surrender?'}
             bgColor="black"
@@ -261,62 +185,54 @@ export default function World() {
       }
 
       {/*Safety Net*/}
-      <place label="maze-start" position={[-140, 100, -22]} rotationY={-90} />
+      <place label="pattern-start" position={[-140, 80, -22]} rotationY={-90} />
       <trigger
         position={[-120, 50, -20]}
         size={[50, 0.1, 15]}
-        onEnter={() => safetyNet1()}
+        //onEnter={() => safetyNet1()}
       />
       <trigger
         position={[-104, 40, -35]}
         size={[15, 0.1, 32]}
-        onEnter={() => world.teleport(null, 'maze-start')}
+        onEnter={() => world.teleport(null, 'pattern-start')}
       />
 
       <place
-        label="maze-checkpoint1"
+        label="pattern-checkpoint1"
         position={[-105, 100, -57]}
         rotationY={-90}
       />
       <trigger
         position={[-85, 35, -58]}
         size={[45, 0.1, 15]}
-        onEnter={() => world.teleport(null, 'maze-checkpoint1')}
+        onEnter={() => world.teleport(null, 'pattern-checkpoint1')}
       />
       <trigger
         position={[-68, 26, -30]}
         size={[15, 0.1, 50]}
-        onEnter={() => world.teleport(null, 'maze-checkpoint1')}
+        onEnter={() => world.teleport(null, 'pattern-checkpoint1')}
       />
 
       <place
-        label="maze-checkpoint2"
+        label="pattern-checkpoint2"
         position={[-67, 80, -13]}
         rotationY={-90}
       />
       <trigger
         position={[-40, 21, -14]}
         size={[50, 0.1, 25]}
-        onEnter={() => world.teleport(null, 'maze-checkpoint2')}
+        onEnter={() => world.teleport(null, 'pattern-checkpoint2')}
       />
       <trigger
         position={[-9, 15, -14]}
         size={[25, 0.1, 25]}
-        onEnter={() => world.teleport(null, 'maze-checkpoint2')}
+        onEnter={() => world.teleport(null, 'pattern-checkpoint2')}
       />
 
       {/*Checkpoint1*/}
-      <rigidbody>
-        <model
-          src="army33.glb"
-          position={[-104.5, 58.5, -59.5]}
-          rotation={[0, -45, 0]}
-          scale={1}
-          allColliders="trimesh"
-        />
-      </rigidbody>
+
       {
-        <billboard position={[-104.5, 60, -59.5]} axis="y">
+        <billboard position={[-106.7, 60, -59.5]} axis="y">
           <text
             value={'Checkpoint'}
             bgColor="black"
@@ -328,15 +244,6 @@ export default function World() {
       }
 
       {/*Checkpoint2*/}
-      <rigidbody>
-        <model
-          src="army33.glb"
-          position={[-74, 44.5, -19.5]}
-          rotation={[0, 90, 0]}
-          scale={1}
-          allColliders="trimesh"
-        />
-      </rigidbody>
       {
         <billboard position={[-74, 47, -19.5]} axis="y">
           <text
@@ -350,17 +257,8 @@ export default function World() {
       }
 
       {/*Exit*/}
-      <rigidbody>
-        <model
-          src="army33.glb"
-          position={[21, 32.4, -20.3]}
-          rotation={[0, 0, 0]}
-          scale={1}
-          allColliders="trimesh"
-        />
-      </rigidbody>
       {
-        <billboard position={[21, 34.9, -20.3]} axis="y">
+        <billboard position={[20, 34.9, -19.6]} axis="y">
           <text
             value={'Exit?'}
             bgColor="black"
