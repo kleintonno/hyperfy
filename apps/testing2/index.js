@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, setTimeout } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { DEG2RAD, useWorld, useFields, useSyncState } from 'hyperfy'
 
 import { Tween } from './Tween'
@@ -71,24 +71,35 @@ export default function World() {
     })
   }, [])
 
-  let animation = mineActive ? 'Walking' : 'Walking'
+  let animation = mineActive ? 'Attack' : 'Walking'
+  let animation2 = mineActive ? 'Attack' : 'Idle'
 
   function death() {
-    world.teleport(null, 'ghost-death')
+    setMineActive(true)
+    setTimeout(() => world.teleport(null, 'ghost-death'), 1000)
+    setTimeout(() => setMineActive(false), 1100)
   }
 
   return (
     <app>
-      {/* elevator */}
-
       {
         <group position={[-9, 0, 0]} ref={bodyRef}>
           <model src="DemonWalking.glb" animate={animation} />
           <trigger
             size={[2, 4, 2]}
-            position={[0, 1, 0]}
+            position={[0, 1, 1.5]}
             onEnter={() => death()}
-            debug
+          />
+        </group>
+      }
+
+      {
+        <group position={[10, 0, 10]}>
+          <model src="DemonWalking.glb" animate={animation2} />
+          <trigger
+            size={[2, 4, 2]}
+            position={[0, 1, 1.5]}
+            onEnter={() => death()}
           />
         </group>
       }
