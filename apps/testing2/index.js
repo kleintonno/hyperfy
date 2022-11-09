@@ -40,11 +40,19 @@ const anim5 = new Tween({ z: -52 })
 }
 
 const schema = {
-  id: 'Quest2',
+  id: 'Quest1',
   origin: 'intro',
   views: {
     intro: {
       text: `Hey Stranger, the castle is haunted. Haven't you heard?`,
+      options: [
+        { text: 'I need to enter', goto: 'intro2' },
+        { text: 'Good bye' },
+      ],
+    },
+    intro2: {
+      text: 'Are you crazy? Well shut the door behind you.',
+      event: 'opendoor1',
     },
   },
 }
@@ -78,6 +86,7 @@ export default function World() {
 
   let animation = mineActive ? 'Attack' : 'Walking'
   let animation2 = mineActive ? 'Attack' : 'Idle'
+  let animation3 = mineActive ? 'Attack' : 'Idle'
 
   function death() {
     setMineActive(true)
@@ -90,7 +99,7 @@ export default function World() {
   return (
     <app>
       {
-        <group position={[-9, 0, 0]} ref={bodyRef}>
+        <group position={[-9, 0, -2]} ref={bodyRef}>
           <model src="DemonWalking.glb" animate={animation} />
           <trigger
             size={[2, 4, 2]}
@@ -119,7 +128,19 @@ export default function World() {
       </rigidbody> */}
 
       <Dialog schema={schema} onView={setView}></Dialog>
-      <model src="army33.glb" />
+      <model src="spearman.glb" />
+      <model src="hauntedcastle_passable.glb" />
+      <model src="DemonIdle2.glb" animate={animation3} />
+      <trigger
+        size={[2, 4, 2]}
+        position={[-7.5, 1, -5]}
+        onEnter={() => death()}
+        debug
+      />
+
+      <rigidbody>
+        <model src="hauntedcastle.glb" allColliders="trimesh" />
+      </rigidbody>
     </app>
   )
 }
