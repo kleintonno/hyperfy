@@ -106,7 +106,7 @@ export default function World() {
         <>
           <box
             size={[0.25, 0.25, 0.25]}
-            color="#47733c"
+            color="red"
             position={[2, 0, -6]}
             onClick={returnDuck1}
           />
@@ -123,7 +123,7 @@ export default function World() {
         <>
           <box
             size={[0.25, 0.25, 0.25]}
-            color="#47733c"
+            color="red"
             position={[2, 0, -7]}
             onClick={returnDuck2}
           />
@@ -140,7 +140,7 @@ export default function World() {
         <>
           <box
             size={[0.25, 0.25, 0.25]}
-            color="#47733c"
+            color="red"
             position={[2, 0, -8]}
             onClick={returnDuck3}
           />
