@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { DEG2RAD, useWorld, useFields, useSyncState } from 'hyperfy'
+import { Dialog } from './Dialog'
 
 import { Tween } from './Tween'
 const anim = new Tween({ z: -8.5 })
@@ -34,14 +35,18 @@ const anim5 = new Tween({ z: -52 })
   .loop()
 
 {
-  /*Launcher
-  const anim5 = new Tween({ y: 80 },{ z: -20 })
-  .to({y: 70, z: -8.5 }, 3, Tween.QUAD_IN_OUT)
-  .wait(0.1)
-  .to({ y: 80, z: -20 }, 3, Tween.QUAD_IN_OUT)
-  .wait(0.1)
-  .loop()
-*/
+  /*Entry Guard
+   */
+}
+
+const schema = {
+  id: 'Quest2',
+  origin: 'intro',
+  views: {
+    intro: {
+      text: `Hey Stranger, the castle is haunted. Haven't you heard?`,
+    },
+  },
 }
 
 export default function World() {
@@ -53,7 +58,7 @@ export default function World() {
   const engine = useWorld()
   const world = useWorld()
   const [mineActive, setMineActive] = useState(false)
-
+  const [view, setView] = useState(false)
   {
     /*}
   function safetyNet1() {
@@ -97,7 +102,7 @@ export default function World() {
 
       {
         <group position={[10, 0, 10]}>
-          <model src="DemonWalking.glb" animate={animation2} />
+          <model src="DemonIdle.glb" animate={animation2} />
           <trigger
             size={[2, 4, 2]}
             position={[0, 1, 1.5]}
@@ -106,12 +111,15 @@ export default function World() {
         </group>
       }
 
-      <place label="demon-death" position={[0, 0, 0]} rotationY={30} />
+      <place label="demon-death" position={[0, 0, 2.5]} rotationY={30} />
 
       {/*  47733c floor 
       <rigidbody>
         <box size={[420, 0.1, 420]} color="#47733c" /> 
       </rigidbody> */}
+
+      <Dialog schema={schema} onView={setView}></Dialog>
+      <model src="army33.glb" />
     </app>
   )
 }
