@@ -76,8 +76,10 @@ export default function World() {
 
   function death() {
     setMineActive(true)
-    setTimeout(() => world.teleport(null, 'ghost-death'), 1000)
+    const name = world.getAvatar().name
+    setTimeout(() => world.teleport(null, 'demon-death'), 1000)
     setTimeout(() => setMineActive(false), 1100)
+    setTimeout(() => world.chat(`${name} has been eviscerated.`), 1100)
   }
 
   return (
@@ -104,7 +106,7 @@ export default function World() {
         </group>
       }
 
-      <place label="ghost-death" position={[0, 0, 0]} rotationY={30} />
+      <place label="demon-death" position={[0, 0, 0]} rotationY={30} />
 
       {/*  47733c floor 
       <rigidbody>
