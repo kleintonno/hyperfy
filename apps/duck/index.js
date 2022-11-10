@@ -47,6 +47,8 @@ export default function World() {
   const [visible2, setVisible2] = useState(false)
   const [visible3, setVisible3] = useState(false)
 
+  const [color, dispatch] = useSyncState(state => state.color)
+
   function doClick1() {
     const name = world.getAvatar().name
     setHasDuck1(true) //User selects duck
@@ -92,6 +94,12 @@ export default function World() {
 
   return (
     <app>
+      <box
+        color={color}
+        position={[2, 0, 2.5]}
+        onClick={() => dispatch('toggle')}
+      />
+
       <place label="demon-death" position={[0, 0, 2.5]} rotationY={30} />
 
       <Dialog schema={schema} onView={setView}></Dialog>
@@ -152,4 +160,17 @@ export default function World() {
       </rigidbody>
     </app>
   )
+}
+const initialState = {
+  color: 'blue',
+}
+export function getStore(state = initialState) {
+  return {
+    state,
+    actions: {
+      toggle(state) {
+        state.color = state.color === 'blue' ? 'red' : 'blue'
+      },
+    },
+  }
 }
