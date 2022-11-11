@@ -100,7 +100,6 @@ export default function World() {
   }
 
   function ghosted() {
-    setMineActive(true)
     const name = world.getAvatar().name
     setTimeout(() => world.teleport(null, 'haunted-respawn'), 500)
     setTimeout(() => world.chat(`A ghost claimed ${name}'s soul.`), 500)
