@@ -8,10 +8,9 @@ const anim = new Tween({ z: -30 })
   .to({ z: -30 }, 7, Tween.QUAD_IN_OUT)
   .loop()
 
-const anim2 = new Tween({ z: -20 })
-  .to({ z: -8.5 }, 3, Tween.QUAD_IN_OUT)
+const anim2 = new Tween({ z: -33 })
+  .to({ z: -16 }, 4, Tween.QUAD_IN_OUT)
   .wait(0.1)
-  .to({ z: -20 }, 3, Tween.QUAD_IN_OUT)
   .loop()
 
 const anim3 = new Tween({ z: -8.5 })
@@ -80,6 +79,13 @@ export default function World() {
       body.setPositionZ(anim.value.z)
     })
   }, [])
+  useEffect(() => {
+    const body = bodyRef2.current
+    return engine.onUpdate(() => {
+      anim2.set(engine.getServerTime())
+      body.setPositionZ(anim2.value.z)
+    })
+  }, [])
 
   let animation = mineActive ? 'Attack' : 'Walking'
   let animation2 = mineActive ? 'Attack' : 'Idle'
@@ -93,6 +99,13 @@ export default function World() {
     setTimeout(() => world.chat(`${name} has been eviscerated.`), 1100)
   }
 
+  function ghosted() {
+    setMineActive(true)
+    const name = world.getAvatar().name
+    setTimeout(() => world.teleport(null, 'demon-death'), 500)
+    setTimeout(() => world.chat(`A ghost claimed ${name}'s soul.`), 500)
+  }
+
   return (
     <app>
       {
@@ -102,6 +115,16 @@ export default function World() {
             size={[2, 4, 2]}
             position={[0, 1, 1.5]}
             onEnter={() => death()}
+          />
+        </group>
+      }
+      {
+        <group position={[8.1, 10.2, 0]} ref={bodyRef2}>
+          <model src="ghost.glb" />
+          <trigger
+            size={[2, 4, 2]}
+            position={[0, 1, 0.5]}
+            onEnter={() => ghosted()}
           />
         </group>
       }

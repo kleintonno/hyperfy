@@ -100,8 +100,6 @@ export default function World() {
         onClick={() => dispatch('toggle')}
       />
 
-      <place label="demon-death" position={[0, 0, 2.5]} rotationY={30} />
-
       <Dialog schema={schema} onView={setView}></Dialog>
 
       <model
