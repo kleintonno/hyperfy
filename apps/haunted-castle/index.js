@@ -3,9 +3,9 @@ import { DEG2RAD, useWorld, useFields, useSyncState } from 'hyperfy'
 import { Dialog } from './Dialog'
 
 import { Tween } from './Tween'
-const anim = new Tween({ z: -8.5 })
-  .to({ z: -20 }, 5, Tween.QUAD_IN_OUT)
-  .to({ z: -8.5 }, 5, Tween.QUAD_IN_OUT)
+const anim = new Tween({ z: -30 })
+  .to({ z: -17 }, 7, Tween.QUAD_IN_OUT)
+  .to({ z: -30 }, 7, Tween.QUAD_IN_OUT)
   .loop()
 
 const anim2 = new Tween({ z: -20 })
@@ -44,14 +44,11 @@ const schema = {
   origin: 'intro',
   views: {
     intro: {
-      text: `Hey Stranger, the castle is haunted. Haven't you heard?`,
-      options: [
-        { text: 'I need to enter', goto: 'intro2' },
-        { text: 'Good bye' },
-      ],
+      text: `Hey stranger, the castle is haunted. Haven't you heard?`,
+      options: [{ text: 'I must enter!', goto: 'intro2' }],
     },
     intro2: {
-      text: 'Are you crazy? Well shut the door behind you.',
+      text: 'For 5 gold, I can look the other way. And shut the door behind you.',
       event: 'opendoor1',
     },
   },
@@ -99,7 +96,7 @@ export default function World() {
   return (
     <app>
       {
-        <group position={[-9, 0, -2]} ref={bodyRef}>
+        <group position={[-15, 0, 0]} ref={bodyRef}>
           <model src="DemonWalking.glb" animate={animation} />
           <trigger
             size={[2, 4, 2]}
@@ -109,7 +106,7 @@ export default function World() {
         </group>
       }
 
-      {
+      {/*
         <group position={[10, 0, 10]}>
           <model src="DemonIdle.glb" animate={animation2} />
           <trigger
@@ -118,7 +115,7 @@ export default function World() {
             onEnter={() => death()}
           />
         </group>
-      }
+    */}
 
       <place label="demon-death" position={[0, 0, 2.5]} rotationY={30} />
 
@@ -133,7 +130,7 @@ export default function World() {
       <model src="DemonIdle2.glb" animate={animation3} />
       <trigger
         size={[2, 4, 2]}
-        position={[-7.5, 1, -5]}
+        position={[-7.6, 1, -7]}
         onEnter={() => death()}
       />
 
