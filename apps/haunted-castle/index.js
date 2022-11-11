@@ -94,7 +94,7 @@ export default function World() {
   function death() {
     setMineActive(true)
     const name = world.getAvatar().name
-    setTimeout(() => world.teleport(null, 'demon-death'), 1000)
+    setTimeout(() => world.teleport(null, 'haunted-respawn'), 1000)
     setTimeout(() => setMineActive(false), 1100)
     setTimeout(() => world.chat(`${name} has been eviscerated.`), 1100)
   }
@@ -102,7 +102,7 @@ export default function World() {
   function ghosted() {
     setMineActive(true)
     const name = world.getAvatar().name
-    setTimeout(() => world.teleport(null, 'demon-death'), 500)
+    setTimeout(() => world.teleport(null, 'haunted-respawn'), 500)
     setTimeout(() => world.chat(`A ghost claimed ${name}'s soul.`), 500)
   }
 
@@ -140,7 +140,7 @@ export default function World() {
         </group>
     */}
 
-      <place label="demon-death" position={[0, 0, 2.5]} rotationY={30} />
+      <place label="haunted-respawn" position={[0, 0, 4]} rotationY={30} />
 
       {/*  47733c floor 
       <rigidbody>
