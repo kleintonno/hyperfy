@@ -13,31 +13,6 @@ const anim2 = new Tween({ z: -33 })
   .wait(0.1)
   .loop()
 
-const anim3 = new Tween({ z: -8.5 })
-  .to({ z: -20 }, 3.5, Tween.QUAD_IN_OUT)
-  .to({ z: -8.5 }, 3.5, Tween.QUAD_IN_OUT)
-  .loop()
-
-const anim4 = new Tween({ z: -20 })
-  .to({ z: -8.5 }, 2.5, Tween.QUAD_IN_OUT)
-  .wait(0.1)
-  .to({ z: -20 }, 2.5, Tween.QUAD_IN_OUT)
-  .loop()
-
-{
-  /*Launcher*/
-}
-const anim5 = new Tween({ z: -52 })
-  .to({ z: -61 }, 2, Tween.QUAD_IN_OUT)
-  .wait(0.1)
-  .to({ z: -52 }, 2, Tween.QUAD_IN_OUT)
-  .loop()
-
-{
-  /*Entry Guard
-   */
-}
-
 const schema = {
   id: 'Quest1',
   origin: 'intro',
@@ -50,15 +25,16 @@ const schema = {
       text: 'For 5 gold, I can look the other way. And shut the door behind you.',
       event: 'opendoor1',
     },
+    youdied: {
+      text: 'What a suprise! You died!',
+      origin: 'youdied',
+    },
   },
 }
 
 export default function World() {
   const bodyRef = useRef()
   const bodyRef2 = useRef()
-  const bodyRef3 = useRef()
-  const bodyRef4 = useRef()
-  const bodyRef5 = useRef()
   const engine = useWorld()
   const world = useWorld()
   const [mineActive, setMineActive] = useState(false)
@@ -97,6 +73,7 @@ export default function World() {
     setTimeout(() => world.teleport(null, 'haunted-respawn'), 1000)
     setTimeout(() => setMineActive(false), 1100)
     setTimeout(() => world.chat(`${name} has been eviscerated.`), 1100)
+    origin = 'youdied'
   }
 
   function ghosted() {
