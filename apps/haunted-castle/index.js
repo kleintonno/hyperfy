@@ -10,7 +10,7 @@ const anim = new Tween({ z: -30 })
 
 const anim2 = new Tween({ z: -33 })
   .to({ z: -16 }, 4, Tween.QUAD_IN_OUT)
-  .wait(0.1)
+  .wait(1.5)
   .loop()
 
 const schema = {
@@ -95,7 +95,7 @@ export default function World() {
         </group>
       }
       {
-        <group position={[8.1, 10.2, 0]} ref={bodyRef2}>
+        <group position={[17.5, 10.5, 0]} ref={bodyRef2}>
           <model src="ghost.glb" />
           <trigger
             size={[2, 4, 2]}
