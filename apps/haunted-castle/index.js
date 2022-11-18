@@ -126,11 +126,12 @@ export default function World() {
       <Dialog schema={schema} onView={setView}></Dialog>
       <model src="spearman.glb" />
       <model src="hauntedcastle_passable.glb" />
-      <model src="DemonIdle2.glb" animate={animation3} />
+      <model src="DemonIdle.glb" animate={animation3} />
       <trigger
-        size={[2, 4, 2]}
-        position={[-7.6, 1, -7]}
+        size={[3, 4, 3]}
+        position={[-21, 1.5, -7.5]}
         onEnter={() => death()}
+        debug
       />
 
       <rigidbody>
