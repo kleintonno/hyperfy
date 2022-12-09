@@ -31,10 +31,15 @@ const schema = {
     },
   },
 }
+
 const schema2 = {
-  id: 'Quest2',
-  origin: 'test',
-  text: `I wouldn't go down there if I was you.`,
+  id: 'QuestTest',
+  origin: 'intro',
+  views: {
+    intro: {
+      text: `I wouldn't go down there if I was you.`,
+    },
+  },
 }
 
 export default function World() {
@@ -128,7 +133,7 @@ export default function World() {
       <Dialog
         schema={schema2}
         onView={setView2}
-        position={[1, 13.8, -6]}
+        position={[2, 13.8, -6]}
       ></Dialog>
 
       <model src="spearman.glb" />
