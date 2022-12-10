@@ -3,9 +3,9 @@ import { DEG2RAD, useWorld, useFields, useSyncState } from 'hyperfy'
 import { Dialog } from './Dialog'
 
 import { Tween } from './Tween'
-const anim = new Tween({ z: -30 }) //demon
-  .to({ z: -17 }, 7, Tween.QUAD_IN_OUT)
-  .to({ z: -30 }, 7, Tween.QUAD_IN_OUT)
+const anim = new Tween({ z: -48 }) //demon
+  .wait(0.5)
+  .to({ z: -24 }, 8, Tween.QUAD_IN_OUT)
   .loop()
 
 const anim2 = new Tween({ x: 39 }) //ghost
@@ -96,7 +96,7 @@ export default function World() {
   return (
     <app>
       {
-        <group position={[-15, 0, 0]} ref={bodyRef}>
+        <group position={[13.6, 2.5, 0]} ref={bodyRef}>
           <model src="DemonWalking.glb" animate={animation} />
           <trigger
             size={[2, 4, 2]}
@@ -133,10 +133,9 @@ export default function World() {
       <Dialog
         schema={schema2}
         onView={setView2}
-        position={[2, 13.8, -6]}
+        position={[2, 13, -6.5]}
       ></Dialog>
 
-      <model src="spearman.glb" />
       <model
         src="DemonIdle.glb"
         position={[29, 2.5, -23.5]}
@@ -158,7 +157,7 @@ export default function World() {
         />
         <model
           src="spearman.glb"
-          position={[1, 12.8, -6]}
+          position={[1.5, 12.8, -6]}
           rotation={[0, 210, 0]}
         />
       </rigidbody>
