@@ -3,9 +3,9 @@ import { DEG2RAD, useWorld, useFields, useSyncState } from 'hyperfy'
 import { Dialog } from './Dialog'
 
 import { Tween } from './Tween'
-const anim = new Tween({ z: -48 }) //demon
-  .wait(0.5)
-  .to({ z: -24 }, 8, Tween.QUAD_IN_OUT)
+const anim = new Tween({ z: -49 }) //demon
+  .wait(0.25)
+  .to({ z: -23.5 }, 10, Tween.QUAD_IN_OUT)
   .loop()
 
 const anim2 = new Tween({ x: 39 }) //ghost
@@ -96,11 +96,11 @@ export default function World() {
   return (
     <app>
       {
-        <group position={[13.6, 2.5, 0]} ref={bodyRef}>
+        <group position={[13.8, 2.5, 0]} ref={bodyRef}>
           <model src="DemonWalking.glb" animate={animation} />
           <trigger
-            size={[2, 4, 2]}
-            position={[0, 1, 1.5]}
+            size={[5, 7, 2]}
+            position={[0, 2, 1.5]}
             onEnter={() => death()}
           />
         </group>
@@ -115,7 +115,7 @@ export default function World() {
           />
         </group>
       }
-
+      <place label="haunted-foyer" position={[3, 13, -25]} rotationY={-50} />
       <place
         label="haunted-respawn"
         position={[-11.5, 15, -24]}
@@ -146,6 +146,20 @@ export default function World() {
         size={[3, 4, 3]}
         position={[29, 3.5, -23.5]}
         onEnter={() => death()}
+      />
+      <place label="greenportal1" position={[25.5, 2.5, -13]} rotationY={25} />
+      <place label="greenportal2" position={[19.5, 2.5, -27]} rotationY={5} />
+
+      <trigger //from GP1 to GP2
+        position={[23.5, 4.5, -14]}
+        size={[1, 4, 3]}
+        onEnter={() => world.teleport(null, 'greenportal2')}
+        debug
+      />
+      <trigger //from GP2 to GP1
+        position={[19.4, 4.5, -23]}
+        size={[3, 4, 1]}
+        onEnter={() => world.teleport(null, 'greenportal1')}
         debug
       />
 
