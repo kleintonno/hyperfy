@@ -147,6 +147,7 @@ export default function World() {
         position={[29, 3.5, -23.5]}
         onEnter={() => death()}
       />
+
       <place label="greenportal1" position={[25.5, 2.5, -13]} rotationY={25} />
       <place label="greenportal2" position={[19.5, 2.5, -27]} rotationY={5} />
 
@@ -154,13 +155,16 @@ export default function World() {
         position={[23.5, 4.5, -14]}
         size={[1, 4, 3]}
         onEnter={() => world.teleport(null, 'greenportal2')}
-        debug
       />
       <trigger //from GP2 to GP1
         position={[19.4, 4.5, -23]}
         size={[3, 4, 1]}
         onEnter={() => world.teleport(null, 'greenportal1')}
-        debug
+      />
+      <trigger //from BluePortal to Foyer
+        position={[47.4, 4.5, -38]}
+        size={[2, 4, 1]}
+        onEnter={() => world.teleport(null, 'haunted-foyer')}
       />
 
       <rigidbody>
