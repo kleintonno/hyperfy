@@ -50,6 +50,13 @@ export default function World() {
   const [mineActive, setMineActive] = useState(false)
   const [view, setView] = useState(false)
   const [view2, setView2] = useState(false)
+  const haunteddoneRef = useRef() //door open sound
+
+  function hauntedmazedone() {
+    const name = world.getAvatar().name
+    world.chat(`${name} has completed the haunted maze!`)
+    haunteddoneRef.current.play()
+  }
 
   {
     /*}
@@ -127,6 +134,7 @@ export default function World() {
         rotationY={5}
       />
       <place label="haunted-maze" position={[5, 2.5, -5]} rotationY={5} />
+      <place label="turretfrontleft" position={[0, 36.5, 0.5]} rotationY={0} />
 
       <Dialog schema={schema} onView={setView} position={[3, 0, 0]}></Dialog>
 
@@ -150,6 +158,11 @@ export default function World() {
 
       <place label="greenportal1" position={[25.5, 2.5, -13]} rotationY={25} />
       <place label="greenportal2" position={[19.5, 2.5, -27]} rotationY={5} />
+      <place
+        label="tilecheckpoint398439"
+        position={[19.4, 2.5, -36.1]}
+        rotationY={-90}
+      />
 
       <trigger //from GP1 to GP2
         position={[23.5, 4.5, -14]}
@@ -161,17 +174,32 @@ export default function World() {
         size={[3, 4, 1]}
         onEnter={() => world.teleport(null, 'greenportal1')}
       />
-      <trigger //from BluePortal to Foyer
+      <trigger //Maze Complete > BluePortal to Foyer
         position={[47.4, 4.5, -38]}
         size={[2, 4, 1]}
         onEnter={() => world.teleport(null, 'haunted-foyer')}
       />
+      <trigger //maze tile safety net
+        position={[30, 1, -39]}
+        size={[16, 0.1, 11]}
+        onEnter={() => world.teleport(null, 'tilecheckpoint398439')}
+      />
 
+      <audio //play sound when maze is completed
+        src="open.mp3"
+        ref={haunteddoneRef}
+        autoplay={false}
+        volume={2}
+        spatial={true}
+        position={[3, 13, -25]} //matches haunted-foyer
+      ></audio>
+
+      <model src="mazetile_passable.glb" position={[0, 15, 0]} />
       <rigidbody>
         <model
           src="testcastle.glb"
           allColliders="trimesh"
-          position={[0, 15, -0]}
+          position={[0, 15, 0]}
         />
         <model
           src="spearman.glb"
