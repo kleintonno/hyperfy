@@ -8,9 +8,9 @@ const anim = new Tween({ z: -49 }) //demon
   .to({ z: -23.5 }, 10, Tween.QUAD_IN_OUT)
   .loop()
 
-const anim2 = new Tween({ x: 39 }) //ghost
-  .to({ x: 23 }, 4, Tween.QUAD_IN_OUT)
-  .wait(1.5)
+const anim2 = new Tween({ x: 37.5 }) //ghost
+  .wait(3)
+  .to({ x: 17.8 }, 5, Tween.QUAD_IN_OUT)
   .loop()
 
 const schema = {
@@ -52,21 +52,6 @@ export default function World() {
   const [view2, setView2] = useState(false)
   const haunteddoneRef = useRef() //door open sound
 
-  function hauntedmazedone() {
-    const name = world.getAvatar().name
-    world.chat(`${name} has completed the haunted maze!`)
-    haunteddoneRef.current.play()
-  }
-
-  {
-    /*}
-  function safetyNet1() {
-    const name = world.getAvatar().name
-    world.teleport(null, 'maze-start')
-    world.chat(`${name} fell in stage 1!`)
-  }
-*/
-  }
   useEffect(() => {
     const body = bodyRef.current
     return engine.onUpdate(() => {
@@ -86,6 +71,12 @@ export default function World() {
   let animation2 = mineActive ? 'Attack' : 'Idle'
   let animation3 = mineActive ? 'Attack' : 'Idle'
 
+  function hauntedmazedone() {
+    const name = world.getAvatar().name
+    world.chat(`${name} has completed the haunted maze!`)
+    haunteddoneRef.current.play()
+    world.teleport(null, 'haunted-foyer')
+  }
   function death() {
     setMineActive(true)
     const name = world.getAvatar().name
@@ -96,7 +87,7 @@ export default function World() {
 
   function ghosted() {
     const name = world.getAvatar().name
-    setTimeout(() => world.teleport(null, 'haunted-respawn'), 500)
+    setTimeout(() => world.teleport(null, 'haunted-maze'), 500)
     setTimeout(() => world.chat(`A ghost claimed ${name}'s soul.`), 500)
   }
 
@@ -113,21 +104,17 @@ export default function World() {
         </group>
       }
       {
-        <group position={[0, 13, -22]} ref={bodyRef2}>
-          <model src="ghost.glb" rotation={[0, -90, 0]} />
+        <group position={[0, 2.6, -31]} ref={bodyRef2}>
+          <model src="ghost.glb" />
           <trigger
-            size={[2, 4, 2]}
-            position={[-0.5, 1, 0]}
+            size={[1, 4, 5]}
+            position={[0, 1, 0]}
             onEnter={() => ghosted()}
           />
         </group>
       }
       <place label="haunted-foyer" position={[3, 13, -25]} rotationY={-50} />
-      <place
-        label="haunted-respawn"
-        position={[-11.5, 15, -24]}
-        rotationY={-50}
-      />
+
       <place
         label="haunted-admin"
         position={[-36.5, 18.6, -3.3]}
@@ -135,6 +122,7 @@ export default function World() {
       />
       <place label="haunted-maze" position={[5, 2.5, -5]} rotationY={5} />
       <place label="turretfrontleft" position={[0, 36.5, 0.5]} rotationY={0} />
+      <place label="haunted-coast" position={[-240, 12, -487]} rotationY={0} />
 
       <Dialog schema={schema} onView={setView} position={[3, 0, 0]}></Dialog>
 
@@ -177,7 +165,7 @@ export default function World() {
       <trigger //Maze Complete > BluePortal to Foyer
         position={[47.4, 4.5, -38]}
         size={[2, 4, 1]}
-        onEnter={() => world.teleport(null, 'haunted-foyer')}
+        onEnter={() => hauntedmazedone()}
       />
       <trigger //maze tile safety net
         position={[30, 1, -39]}
@@ -186,7 +174,7 @@ export default function World() {
       />
 
       <audio //play sound when maze is completed
-        src="open.mp3"
+        src="success.mp4"
         ref={haunteddoneRef}
         autoplay={false}
         volume={2}
@@ -207,6 +195,26 @@ export default function World() {
           rotation={[0, 210, 0]}
         />
       </rigidbody>
+      <model
+        src="avatarcapsule001.glb"
+        position={[0, 15, 0]}
+        onClick={e => {
+          engine.open(
+            'https://acandar.nyc3.digitaloceanspaces.com/tf_anomaly.vrm',
+            true
+          )
+        }}
+      />
+      <model
+        src="avatarcapsule002.glb"
+        position={[0, 15, 0]}
+        onClick={e => {
+          engine.open(
+            'https://acandar.nyc3.digitaloceanspaces.com/lizardsuit.vrm',
+            true
+          )
+        }}
+      />
     </app>
   )
 }
