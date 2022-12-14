@@ -13,6 +13,11 @@ const anim2 = new Tween({ x: 37.5 }) //ghost
   .to({ x: 17.8 }, 5, Tween.QUAD_IN_OUT)
   .loop()
 
+const anim3 = new Tween({ x: 32 }) //ghost2
+  .wait(1)
+  .to({ x: 12 }, 5, Tween.QUAD_IN_OUT)
+  .loop()
+
 const schema = {
   id: 'Quest1',
   origin: 'intro',
@@ -43,14 +48,18 @@ const schema2 = {
 }
 
 export default function World() {
-  const bodyRef = useRef()
-  const bodyRef2 = useRef()
+  const bodyRef = useRef() //demon
+  const bodyRef2 = useRef() //ghost1
+  const bodyRef3 = useRef() //ghost2
   const engine = useWorld()
   const world = useWorld()
   const [mineActive, setMineActive] = useState(false)
   const [view, setView] = useState(false)
   const [view2, setView2] = useState(false)
-  const haunteddoneRef = useRef() //door open sound
+  const haunteddoneRef = useRef() //maze complete sound
+  const open1Ref = useRef() //door open sound
+
+  const [visible1, setVisible1] = useState(true) //mazedoor
 
   useEffect(() => {
     const body = bodyRef.current
@@ -64,6 +73,13 @@ export default function World() {
     return engine.onUpdate(() => {
       anim2.set(engine.getServerTime())
       body.setPositionX(anim2.value.x)
+    })
+  }, [])
+  useEffect(() => {
+    const body = bodyRef3.current
+    return engine.onUpdate(() => {
+      anim3.set(engine.getServerTime())
+      body.setPositionX(anim3.value.x)
     })
   }, [])
 
@@ -91,6 +107,11 @@ export default function World() {
     setTimeout(() => world.chat(`A ghost claimed ${name}'s soul.`), 500)
   }
 
+  function lever() {
+    setVisible1(false)
+    open1Ref.current.play()
+  }
+
   return (
     <app>
       {
@@ -105,6 +126,16 @@ export default function World() {
       }
       {
         <group position={[0, 2.6, -31]} ref={bodyRef2}>
+          <model src="ghost.glb" />
+          <trigger
+            size={[1, 4, 5]}
+            position={[0, 1, 0]}
+            onEnter={() => ghosted()}
+          />
+        </group>
+      }
+      {
+        <group position={[0, 2.6, -8.5]} ref={bodyRef3}>
           <model src="ghost.glb" />
           <trigger
             size={[1, 4, 5]}
@@ -177,9 +208,18 @@ export default function World() {
         src="success.mp4"
         ref={haunteddoneRef}
         autoplay={false}
-        volume={2}
+        volume={4}
         spatial={true}
         position={[3, 13, -25]} //matches haunted-foyer
+      ></audio>
+
+      <audio //door open sound
+        src="open.mp3"
+        ref={open1Ref}
+        autoplay={false}
+        volume={2}
+        spatial={true}
+        position={[35, 0, -14]}
       ></audio>
 
       <model src="mazetile_passable.glb" position={[0, 15, 0]} />
@@ -194,25 +234,43 @@ export default function World() {
           position={[1.5, 12.8, -6]}
           rotation={[0, 210, 0]}
         />
+        {visible1 && (
+          <>
+            <model
+              src="mazedoor.glb"
+              position={[0, 15, 0]}
+              allColliders="trimesh"
+            />
+          </>
+        )}
+        <model
+          src="avatarcapsule001.glb"
+          position={[0, 15, 0]}
+          onClick={e => {
+            engine.open(
+              'https://acandar.nyc3.digitaloceanspaces.com/tf_anomaly.vrm',
+              true
+            )
+          }}
+        />
+        <model
+          src="avatarcapsule002.glb"
+          position={[0, 15, 0]}
+          onClick={e => {
+            engine.open(
+              'https://acandar.nyc3.digitaloceanspaces.com/lizardsuit.vrm',
+              true
+            )
+          }}
+        />
       </rigidbody>
+
       <model
-        src="avatarcapsule001.glb"
+        src="lever.glb"
+        allColliders="trimesh"
         position={[0, 15, 0]}
         onClick={e => {
-          engine.open(
-            'https://acandar.nyc3.digitaloceanspaces.com/tf_anomaly.vrm',
-            true
-          )
-        }}
-      />
-      <model
-        src="avatarcapsule002.glb"
-        position={[0, 15, 0]}
-        onClick={e => {
-          engine.open(
-            'https://acandar.nyc3.digitaloceanspaces.com/lizardsuit.vrm',
-            true
-          )
+          lever()
         }}
       />
     </app>
