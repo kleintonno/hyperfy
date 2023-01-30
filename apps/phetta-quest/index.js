@@ -70,7 +70,7 @@ export default function World() {
         }}
       ></Dialog>
 
-      <model src="tvmanwelcomenpc.glb" animate={animation} />
+      <model src="tvmanwelcomenpc.glb" animate={animation} scale={1.5} />
     </app>
   )
 }

@@ -108,8 +108,10 @@ export default function World() {
   }
 
   function lever() {
+    const name = world.getAvatar().name
     setVisible1(false)
     open1Ref.current.play()
+    world.chat(`${name} has opened a door.`)
   }
 
   return (
@@ -243,17 +245,8 @@ export default function World() {
             />
           </>
         )}
-        <model
-          src="avatarcapsule001.glb"
-          position={[0, 15, 0]}
-          onClick={e => {
-            engine.open(
-              'https://acandar.nyc3.digitaloceanspaces.com/tf_anomaly.vrm',
-              true
-            )
-          }}
-        />
-        <model
+        <model src="avatarcapsules_empty.glb" position={[0, 15, 0]} />
+        {/*<model
           src="avatarcapsule002.glb"
           position={[0, 15, 0]}
           onClick={e => {
@@ -262,7 +255,7 @@ export default function World() {
               true
             )
           }}
-        />
+        />*/}
       </rigidbody>
 
       <model
